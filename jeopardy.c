@@ -1,7 +1,8 @@
 #include <stdio.h>
-#include "ascii.c"
 #include <stdlib.h>
-#include <string.h> // used to access strings and string related actions
+#include "ascii.c"
+#include "functions.c"
+#include "questions1.c"
 
 /*
 	Description:
@@ -11,91 +12,69 @@
 */
 
 /*
-	Description: Triggers the start menu on startup and when a game is quit
+	Description: Starts the game if the user picks 1
 	Precondition: none
 	@ param none
-	@return the chosen start status whether start game, instructions, or exit game
+	@return none
 */
-char StartMenu()
-{
-	char strStartStatus[2]; // char with [n] means the length of the input which becomes a string, 2 is put because I only want 1 digit for item [0] and the other 2 extra is for the \0 which ends the string
-	
-	printJeopardy();
-	
-	printf("Welcome to Jeopardy!\n");
+void PlayGame(){
+    int nPlayers;
+    int nJeopardyMultiplier;
 
-    while (1) // while (1) makes an infinite loop until you do something to make it exit
-	{
-        printf("[1] Start Game \n");
-        printf("[2] How to Play \n");
-        printf("[3] Exit Game \n");
+    char strPlayer1Name[16];
+    char strPlayer2Name[16];
+    char strPlayer3Name[16];
+    char strActivePlayer[16];
 
-        printf("Select Option: ");
-        scanf("%1s", strStartStatus); // %1s makes it so that it will make the scanf only get the first digit
+    char strFirst[16];
+    char strSecond[16];
+    char strThird[16];
 
-        switch (strStartStatus[0]) // [0] is there since the \0 is still caught so it stops being a single digit '' char
-		 {		 	
-            case '1': {
-                return strStartStatus[0];
-                break;
-            }
-            case '2': {
-                return strStartStatus[0];
-                break;
-            }
-            case '3': {
-                return strStartStatus[0];
-                break;
-            }
-            default: {
-                printf("Invalid Option. Please type 1, 2, or 3.\n");
-            }
-            // no break to make the while (1) work 
-        }
+    float fFirstScore;
+    float fSecondScore;
+    float fThirdScore;
+    float fActiveScore;
+
+    char Ask1;
+    int Ask2;
+
+    nJeopardyMultiplier = 1;
+    nPlayers = GetPlayers();
+    printf("What are the Player/s' names? \n");
+
+    if (nPlayers >= 1){
+        printf("What is Player 1's name (Max of 15 characters long and no spaces): ");
+        scanf("%15s", &strPlayer1Name);
     }
+
+    if (nPlayers >= 2){
+        printf("What is Player 2's name (Max of 15 characters long and no spaces): ");
+        scanf("%15s", &strPlayer2Name);
+    } 
     
-    return strStartStatus[0];
-}
-
-int GetPlayers() {
-    char strPlayerCount[2];
-
-    while (1) {
-        printf("How many players (1 - 3)? \n");
-
-        printf("Select Option: ");
-        scanf("%1s", strPlayerCount);
-
-        switch (strPlayerCount[0]) {
-            case '1': {
-                return 1;
-            }
-            case '2': {
-                return 2;
-            }
-            case '3': {
-                return 3;
-            }
-            default: {
-                printf("Invalid player count. Please type 1, 2, or 3.\n");
-            }
-        }
+    if (nPlayers >= 3){
+        printf("What is Player 3's name (Max of 15 characters long and no spaces): ");
+        scanf("%15s", &strPlayer3Name);
     }
 
-    return 0;
+    printf("%s %s %s", strPlayer1Name, strPlayer2Name, strPlayer3Name);
+    // clearTerminal();
 }
-
 
 int main ()
 {
 	char cMode;
-	int nPlayers;
+
 	
-    cMode = StartMenu(); // triggers the start menu
-    nPlayers = GetPlayers(); //gets the number of players
-    
-    printf("num pla %d  ", nPlayers);
-	
+    cMode = StartMenu();
+
+    switch (cMode) {
+        case '1':
+        {
+            PlayGame();
+        }
+    }
+
 	
 	return 0;
 }
