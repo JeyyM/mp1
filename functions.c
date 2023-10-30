@@ -1,3 +1,6 @@
+#include <stdlib.h>
+#include <string.h>
+
 /*
 	Description: Clears the terminal
 	Precondition: none
@@ -97,6 +100,77 @@ char StartMenu()
     return strStartStatus[0];
 }
 
-void OrderPlayers(){
-    
+/*
+	Description: Assigns the order of each player name on the strPlacements
+	Precondition: The number of players are set and 1-3 player names
+	@ param nPlayers - number of players. strPlayer#Names - the names of the players, strPlacement - the ordering names
+	@return none
+*/
+void OrderPlayers(int* nPlayers, char* strPlayer1Name, char* strPlayer2Name, char* strPlayer3Name, char* strFirst, char* strSecond, char* strThird) {
+    srand(time(NULL));
+
+    float fRand1 = rand();
+    float fRand2 = rand();
+    float fRand3 = rand();
+
+    //* aren't put behind the chars because they are arrays. Arrays are treated like pointers
+
+    if (*nPlayers == 3) {
+        if (fRand1 > fRand2 && fRand1 > fRand3) {
+            strcpy(strFirst, strPlayer1Name);
+            
+            if (fRand2 > fRand3) {
+                strcpy(strSecond, strPlayer2Name);
+                strcpy(strThird, strPlayer3Name);
+            } else {
+                strcpy(strSecond, strPlayer3Name);
+                strcpy(strThird, strPlayer2Name);
+            }	
+        }
+        else if (fRand2 > fRand3) {
+            strcpy(strFirst, strPlayer2Name);
+            
+            if (fRand1 > fRand3) {
+                strcpy(strSecond, strPlayer1Name);
+                strcpy(strThird, strPlayer3Name);
+            } else {
+                strcpy(strSecond, strPlayer3Name);
+                strcpy(strThird, strPlayer1Name);
+            }	
+        }
+        else {
+            strcpy(strFirst, strPlayer3Name);
+            
+            if (fRand1 > fRand2) {
+                strcpy(strSecond, strPlayer1Name);
+                strcpy(strThird, strPlayer2Name);
+            } else {
+                strcpy(strSecond, strPlayer2Name);
+                strcpy(strThird, strPlayer1Name);
+            }	
+        }
+    } else if (*nPlayers == 2) {
+        if (fRand1 > fRand2) {
+            strcpy(strFirst, strPlayer1Name);
+            strcpy(strSecond, strPlayer2Name);
+        } else {
+            strcpy(strFirst, strPlayer2Name);
+            strcpy(strSecond, strPlayer1Name);
+        }
+    } else {
+        strcpy(strFirst, strPlayer1Name);
+    }
+
+    clearTerminal();
+
+    if (*nPlayers >= 1) {
+        printf("The Play Order Will Be: \n");
+        printf("%s \n", strFirst);
+        if (*nPlayers >= 2) {
+            printf("%s \n", strSecond);
+        }
+        if (*nPlayers >= 3) {
+            printf("%s \n", strThird);
+        }
+    }
 }
