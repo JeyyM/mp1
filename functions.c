@@ -96,3 +96,7 @@ char StartMenu()
     
     return strStartStatus[0];
 }
+
+void OrderPlayers(){
+    
+}
