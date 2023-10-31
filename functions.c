@@ -174,3 +174,14 @@ void OrderPlayers(int* nPlayers, char* strPlayer1Name, char* strPlayer2Name, cha
         }
     }
 }
+
+/*
+	Description: Gets a random number between a minimum and maximum
+	Precondition: none
+	@ param min - lowest floor, max - the highest possible
+	@return randomized number
+*/
+int RandMinMax(int min, int max) 
+{
+    return min + rand() % (max - min + 1);
+}

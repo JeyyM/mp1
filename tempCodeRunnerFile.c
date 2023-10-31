@@ -1,1 +1,1 @@
-    OrderPlayers(&nPlayers, &strPlayer1Name, &strPlayer2Name, &strPlayer3Name, &strFirst, &strSecond, &strThird);
+GetTitle(1);

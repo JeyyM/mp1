@@ -196,3 +196,8 @@ char C7Q5[] = "Which tree species is commonly associated with the production of 
 char C7C5[] = "A) Elm\nB) Cedar\nC) Eucalyptus\nD) Beech\n";
 char C7A5 = 'C';
 int  C7P5 = 1000;
+
+void GetTitle(int TitleNum) {
+    printf("%d", TitleNum);
+    // Implement the logic to handle TitleNum as needed
+}
