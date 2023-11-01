@@ -216,6 +216,18 @@ void setPlayer(int nTurnTracker, char* Player1Name, char* Player2Name, char* Pla
     }
 }
 
+void ValidateQuestion(int* nChoiceLoop2, int* ActiveCateg, 
+                      int* P1, int* P2, int* P3, int* P4, int* P5, 
+                      char* Q1, char* Q2, char* Q3, char* Q4, char* Q5,
+                      char* Ch1, char* Ch2, char* Ch3, char* Ch4, char* Ch5, 
+                      char Ans1, char Ans2, char Ans3, char Ans4, char Ans5){
+                        
+                    char cQChoice;
+
+                    printf("Which question would you like to answer?\n $%d\n $%d\n $%d\n $%d\n $%d\n", P1, P2, P3, P4, P5);
+                    scanf("%c", cQChoice);
+                      }
+
 void PickAnswer(
                 char* Title1, char* Title2, char* Title3, char* Title4, 
 
@@ -243,7 +255,11 @@ void PickAnswer(
                 int* Cat1P4, int* Cat2P4, int* Cat3P4, int* Cat4P4,
                 int* Cat1P5, int* Cat2P5, int* Cat3P5, int* Cat4P5,
 
-                int* nJeopardyProgress, int* nTurnTracker, int nPlayers
+                int* nJeopardyProgress, int* nTurnTracker, int nPlayers,
+
+                char* strFirst, char* strSecond, char* strThird,
+                int* nFirstScore, int* nSecondScore, int* nThirdScore,
+                char* strActivePlayer, int* nActiveScore
                 )
     {
 
@@ -253,20 +269,12 @@ void PickAnswer(
     int CatDProgress = 5;
     int CatEProgress = 5;
 
-    char ActiveCateg[100];
+    int nChoiceLoop1 = 1;
+    int nChoiceLoop2 = 1;
+    int nFailCounter = 0;
+
+    int ActiveCateg;
     int ActiveProgress;
-
-    char ActiveQ1[100];
-    char ActiveQ2[100];
-    char ActiveQ3[100];
-    char ActiveQ4[100];
-    char ActiveQ5[100];
-
-    char ActiveC1[100];
-    char ActiveC2[100];
-    char ActiveC3[100];
-    char ActiveC4[100];
-    char ActiveC5[100];
 
     int ActiveP1;
     int ActiveP2;
@@ -275,36 +283,64 @@ void PickAnswer(
     int ActiveP5;
 
     char cCategChoice;
+    char cQuestionChoice;
+    char cAnswerChoice;
     
-        printf("It is currently %s's turn\n Your score is: %d\n", strActivePlayer, nActiveScore);
+        printf("It is currently %s's turn\n Your score is: %d\n", strActivePlayer, *nActiveScore);
+        printf("Select which category you want to answer: \n [A] %s\n [B] %s\n [C] %s\n [D] %s\n [E] Exit Game\n", Title1, Title2, Title3, Title4);
 
-        printf("Select which category you want to answer: \n [A] %s\n [B] %s\n [C]%s\n [D]%s\n [E] Exit Game\n", strTitle1, strTitle2, strTitle3, strTitle4);
+    while (nChoiceLoop1) {
+            printf("Please choose a category [A, B, C, D, E]: ");
+            scanf(" %c", &cCategChoice);
 
-        scanf(" %c", &cCategChoice);
+            if (cCategChoice == 'A') {
+                if (CatAProgress > 0) {
+                    printf("You chose category [A] %s\n Which question would you like to answer?\n", Title1);
+                    printf("[A] $ %d\n [B] $ %d\n [C] $ %d\n [D] $ %d\n [E] $ %d\n ");
 
-    //     while (1) {
-    //     printf("How many players (1 - 3)? \n");
+                    ActiveCateg = CatAProgress;
+                    ValidateQuestion(nChoiceLoop2, ActiveCateg, );
 
-    //     printf("Select Option: ");
-    //     scanf("%1s", strPlayerCount);
+                    // void ValidateQuestion(int* nChoiceLoop2, int* ActiveCateg, 
+                    //   int* P1, int* P2, int* P3, int* P4, int* P5, 
+                    //   char* Q1, char* Q2, char* Q3, char* Q4, char* Q5,
+                    //   char* Ch1, char* Ch2, char* Ch3, char* Ch4, char* Ch5, 
+                    //   char Ans1, char Ans2, char Ans3, char Ans4, char Ans5){
+                        
 
-    //     switch (strPlayerCount[0]) {
-    //         case '1': {
-    //             clearTerminal();
-    //             return 1;
-    //         }
-    //         case '2': {
-    //             return 2;
-    //             clearTerminal();
-    //         }
-    //         case '3': {
-    //             clearTerminal();
-    //             return 3;
-    //         }
-    //         default: {
-    //             printf("Invalid player count. Please type 1, 2, or 3.\n");
-    //         }
-    //     }
-    // }
+                    nChoiceLoop1 = 0;
+                } else {
+                    printf("The category has been completed. Pick another.\n");
+                }
+            } else if (cCategChoice == 'B') {
+                if (CatBProgress > 0) {
+                    printf("You chose category B\n");
+                    nChoiceLoop1 = 0;
+                } else {
+                    printf("The category has been completed. Pick another.\n");
+                }
+            } else if (cCategChoice == 'C') {
+                if (CatBProgress > 0) {
+                    printf("You chose category B\n");
+                    nChoiceLoop1 = 0;
+                } else {
+                    printf("The category has been completed. Pick another.\n");
+                }
+            } else if (cCategChoice == 'D') {
+                if (CatBProgress > 0) {
+                    printf("You chose category B\n");
+                    nChoiceLoop1 = 0;
+                } else {
+                    printf("The category has been completed. Pick another.\n");
+                }
+            } else if (cCategChoice == 'E') {
+                printf("You chose to exit the game\n");
+                nChoiceLoop1 = 0;
+            } else {
+                printf("Invalid choice. Please pick from: [A, B, C, D, E]\n");
+            }
+        }
 
-    }
+    printf("Out of the loop");
+
+        }

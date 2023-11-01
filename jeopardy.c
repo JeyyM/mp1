@@ -178,6 +178,10 @@ void PlayGame(){
                    &Cat1P5, &Cat2P5, &Cat3P5, &Cat4P5,
 
                    &nJeopardyProgress, &nTurnTracker, nPlayers,
+
+                   strFirst, strSecond, strThird,
+                   &nFirstScore, &nSecondScore, &nThirdScore,
+                   strActivePlayer, &nActiveScore
                    );
 
 
