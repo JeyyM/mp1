@@ -27,7 +27,7 @@ int getPlayers() {
         printf("How many players (1 - 3)? \n");
 
         printf("Select Option: ");
-        scanf("%1s", strPlayerCount);
+        scanf(" %1s", strPlayerCount);
 
         switch (strPlayerCount[0]) {
             case '1': {
@@ -216,17 +216,57 @@ void setPlayer(int nTurnTracker, char* Player1Name, char* Player2Name, char* Pla
     }
 }
 
-void ValidateQuestion(int* nChoiceLoop2, int* ActiveCateg, 
+void ValidateQuestion(int* ActiveCateg, 
                       int* P1, int* P2, int* P3, int* P4, int* P5, 
                       char* Q1, char* Q2, char* Q3, char* Q4, char* Q5,
                       char* Ch1, char* Ch2, char* Ch3, char* Ch4, char* Ch5, 
                       char Ans1, char Ans2, char Ans3, char Ans4, char Ans5){
                         
                     char cQChoice;
+                    int nChoicePrize;
+                    int nChoiceLoop2 = 1;
+                    int nChoiceLoop3 = 1;
 
-                    printf("Which question would you like to answer?\n $%d\n $%d\n $%d\n $%d\n $%d\n", P1, P2, P3, P4, P5);
-                    scanf("%c", cQChoice);
-                      }
+                    int nFailCounter = 0;
+
+                    char cAChoice;
+
+                    printf("Which question would you like to answer?\n [A]$%d\n [B]$%d\n [C]$%d\n [D]$%d\n [E]$%d\n", *P1, *P2, *P3, *P4, *P5);
+
+while (nChoiceLoop2) {
+    printf("Please choose a question [A, B, C, D, E]: ");
+    scanf(" %1c", &cQChoice);
+
+    if (cQChoice == 'A') {
+        if (*P1 > 0) {
+            nChoicePrize = *P1;
+
+            printf("You chose $%d\n Your question is: %s\n Your choices are:\n %s\n", *P1, Q1, Ch1);
+            
+            while (nChoiceLoop3) {
+                printf("Please choose an answer [A, B, C, D] hint(%c): ", Ans1);
+                scanf(" %1c", &cAChoice);
+
+                if (cAChoice == Ans1) {
+                    printf("Correct answer!\n");
+
+
+                    nChoiceLoop3 = 0;
+                } else {
+                    printf("Incorrect answer. Please choose from: [A, B, C, D]\n");
+                }
+            }
+
+            nChoiceLoop2 = 0;
+        } else {
+            printf("That question has already been answered.\n");
+        }
+    } else {
+        printf("Invalid choice. Please pick from: [A, B, C, D, E]\n");
+    }
+}
+
+}
 
 void PickAnswer(
                 char* Title1, char* Title2, char* Title3, char* Title4, 
@@ -270,43 +310,31 @@ void PickAnswer(
     int CatEProgress = 5;
 
     int nChoiceLoop1 = 1;
-    int nChoiceLoop2 = 1;
-    int nFailCounter = 0;
-
+    
     int ActiveCateg;
     int ActiveProgress;
-
-    int ActiveP1;
-    int ActiveP2;
-    int ActiveP3;
-    int ActiveP4;
-    int ActiveP5;
 
     char cCategChoice;
     char cQuestionChoice;
     char cAnswerChoice;
-    
+
         printf("It is currently %s's turn\n Your score is: %d\n", strActivePlayer, *nActiveScore);
         printf("Select which category you want to answer: \n [A] %s\n [B] %s\n [C] %s\n [D] %s\n [E] Exit Game\n", Title1, Title2, Title3, Title4);
 
     while (nChoiceLoop1) {
             printf("Please choose a category [A, B, C, D, E]: ");
-            scanf(" %c", &cCategChoice);
+            scanf(" %1c", &cCategChoice);
 
             if (cCategChoice == 'A') {
                 if (CatAProgress > 0) {
-                    printf("You chose category [A] %s\n Which question would you like to answer?\n", Title1);
-                    printf("[A] $ %d\n [B] $ %d\n [C] $ %d\n [D] $ %d\n [E] $ %d\n ");
+                    printf("You chose category [A] %s\n", Title1);
 
                     ActiveCateg = CatAProgress;
-                    ValidateQuestion(nChoiceLoop2, ActiveCateg, );
 
-                    // void ValidateQuestion(int* nChoiceLoop2, int* ActiveCateg, 
-                    //   int* P1, int* P2, int* P3, int* P4, int* P5, 
-                    //   char* Q1, char* Q2, char* Q3, char* Q4, char* Q5,
-                    //   char* Ch1, char* Ch2, char* Ch3, char* Ch4, char* Ch5, 
-                    //   char Ans1, char Ans2, char Ans3, char Ans4, char Ans5){
-                        
+                    ValidateQuestion(&ActiveCateg, Cat1P1, Cat1P2, Cat1P3, Cat1P4, Cat1P5,
+                    Cat1Q1, Cat1Q2, Cat1Q3, Cat1Q4, Cat1Q5, Cat1Ch1, Cat1Ch2, Cat1Ch3, Cat1Ch4, Cat1Ch5,
+                    Cat1Ans1, Cat1Ans2, Cat1Ans3, Cat1Ans4, Cat1Ans5  
+                    );
 
                     nChoiceLoop1 = 0;
                 } else {
