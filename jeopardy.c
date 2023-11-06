@@ -207,7 +207,6 @@ int main ()
         { 
             
         } break;
-        // for the quit since it has to be a loop, later on put a while(1) over everything so its waiting for a break.
         // put the break at the end of case 3, where the exit statement happens at the end
         case '3': 
         { 
