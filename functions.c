@@ -222,7 +222,7 @@ void setPlayer(int nTurnTracker, char* Player1Name, char* Player2Name, char* Pla
 	@ param p# - the prizes for each item
 	@return number of the question
 */
-void CheckAnswer(char* CatQ, char* CatCh, char CatAns, int* nActiveScore, int* CatP, char* strActivePlayer){
+void CheckAnswer(char* CatQ, char* CatCh, char CatAns, int* nActiveScore, int* CatP, char* strActivePlayer, int* CatProgress){
     char cAnswerChoice;
 
     printf("Your question is: %s\n", CatQ);
@@ -234,6 +234,7 @@ void CheckAnswer(char* CatQ, char* CatCh, char CatAns, int* nActiveScore, int* C
         printf("Congrats, %s! You won $%d \n", strActivePlayer, *CatP);
         *nActiveScore += *CatP;
         *CatP = 0;
+        CatProgress += 1;
 
         printf("Press Any Key to Continue\n");  
         getch();
@@ -371,7 +372,7 @@ void PickAnswer(
 
                     switch (nValidQ){
                         case 1:{
-                            CheckAnswer(Cat1Q1, Cat1Ch1, Cat1Ans1, nActiveScore, Cat1P1, strActivePlayer);
+                            CheckAnswer(Cat1Q1, Cat1Ch1, Cat1Ans1, nActiveScore, Cat1P1, strActivePlayer, &CatAProgress);
                         } break;
 
                         case 2:{

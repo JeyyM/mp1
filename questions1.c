@@ -206,7 +206,7 @@ int  C7P5 = 1000;
 	@return none
 */
 
-// NOTE: Aontent was split up to not make it too big
+// NOTE: GetContent was split up to not make it too big
 void getContent1(int TitleNum, char* strTitle, char* CatQ1, char* CatQ2, char* CatQ3, char* CatQ4, char* CatQ5) {
     switch (TitleNum){
         case 1:{
