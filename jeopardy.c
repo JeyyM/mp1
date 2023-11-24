@@ -192,7 +192,7 @@ void PlayGame(){
 
                nJeopardyProgress -= 1;
 
-    } while (nJeopardyProgress >= 0);
+    } while (nJeopardyProgress > 0);
 
     printf("Regular jeaopardy finish");
     
