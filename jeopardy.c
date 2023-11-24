@@ -4,6 +4,7 @@
 #include "ascii.c"
 #include "functions.c"
 #include "questions1.c"
+#include "main_functions.c"
 
 /*
 	Description:
