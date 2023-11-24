@@ -248,10 +248,12 @@ int CheckAnswer(char* CatQ, char* CatCh, char CatAns, int* nActiveScore, int* Ca
 
         clearTerminal();
 
-        return 1;
+        return 0;
+    } else {
+        printf("Sorry, %s, that is the wrong answer.\n", strActivePlayer);
+        *nActiveScore -= *CatP;
+        return *CatP;
     }
-    
-    return 0;
 }
 
 /*
@@ -387,6 +389,19 @@ void PickAnswer(
                     switch (nValidQ){
                         case 1:{
                             nAnswerStatus = CheckAnswer(Cat1Q1, Cat1Ch1, Cat1Ans1, nActiveScore, Cat1P1, strActivePlayer, &CatAProgress);
+
+                            if (nAnswerStatus > 0){
+                                nFailCounter++;
+
+                                do {
+                                    printf("nPlayers: %d\n", nPlayers);
+                                    printf("nFailcounter: %d\n", nFailCounter);
+                                    nFailCounter++;
+                                } while (nFailCounter != nPlayers);
+
+                                printf("test exit\n");
+                            }
+                            
                         } break;
 
                         case 2:{
