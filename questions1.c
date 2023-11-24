@@ -171,6 +171,19 @@ char C6A5 = 'A';
 int  C6P5 = 1000;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 char C7[] = "I Speak for the Trees";
 
 char C7Q1[] = "Which tree is known for its vibrant red and orange leaves in the autumn?";
@@ -197,7 +210,6 @@ char C7Q5[] = "Which tree species is commonly associated with the production of 
 char C7C5[] = "A) Elm\nB) Cedar\nC) Eucalyptus\nD) Beech\n";
 char C7A5 = 'C';
 int  C7P5 = 1000;
-
 
 /*
 	Description: Assigns the title and questions for each category based on the number they roll

@@ -18,7 +18,7 @@ void clearTerminal()
 	Description: Picks the number of players
 	Precondition: none
 	@ param none
-	@return the integer version of the chosen char
+	@return the integer version of the chosen char, keeps checking for valid inputs
 */
 int getPlayers() {
     char strPlayerCount[2];
@@ -28,6 +28,10 @@ int getPlayers() {
 
         printf("Select Option: ");
         scanf(" %1s", strPlayerCount);
+
+        // Clears the buffer meaning if you type for example, 333, it will stop the input from affecting the next ones
+        int ch;
+        while ((ch = getchar()) != '\n' && ch != EOF);
 
         switch (strPlayerCount[0]) {
             case '1': {
@@ -108,6 +112,7 @@ char startMenu()
 	@return none
 */
 void orderPlayers(int* nPlayers, char* strPlayer1Name, char* strPlayer2Name, char* strPlayer3Name, char* strFirst, char* strSecond, char* strThird) {
+    // picks a random number seed based on current time
     srand(time(NULL));
 
     float fRand1 = rand();
@@ -222,13 +227,15 @@ void setPlayer(int nTurnTracker, char* Player1Name, char* Player2Name, char* Pla
 	@ param p# - the prizes for each item
 	@return number of the question
 */
-void CheckAnswer(char* CatQ, char* CatCh, char CatAns, int* nActiveScore, int* CatP, char* strActivePlayer, int* CatProgress){
+int CheckAnswer(char* CatQ, char* CatCh, char CatAns, int* nActiveScore, int* CatP, char* strActivePlayer, int* CatProgress){
     char cAnswerChoice;
 
     printf("Your question is: %s\n", CatQ);
     printf("Your choices are (%c):\n %s\n", CatAns, CatCh);
 
+    printf("What is your choice: ");
     scanf(" %1c", &cAnswerChoice);
+    while (getchar() != '\n');
 
     if (cAnswerChoice == CatAns){
         printf("Congrats, %s! You won $%d \n", strActivePlayer, *CatP);
@@ -240,7 +247,11 @@ void CheckAnswer(char* CatQ, char* CatCh, char CatAns, int* nActiveScore, int* C
         getch();
 
         clearTerminal();
+
+        return 1;
     }
+    
+    return 0;
 }
 
 /*
@@ -258,6 +269,7 @@ int ValidateQuestion(int* P1, int* P2, int* P3, int* P4, int* P5){
 while (nChoiceLoop2) {
     printf("Please choose a question [A, B, C, D, E]: ");
     scanf(" %1c", &cQChoice);
+    while (getchar() != '\n');
 
     if (cQChoice == 'A') {
         if (*P1 > 0) {
@@ -354,6 +366,8 @@ void PickAnswer(
     char cCategChoice;
     char cQuestionChoice;
 
+    int nAnswerStatus;
+
     int nValidQ;
 
         printf("It is currently %s's turn\n Your score is: %d\n", strActivePlayer, *nActiveScore);
@@ -362,17 +376,17 @@ void PickAnswer(
     while (nChoiceLoop1) {
             printf("Please choose a category [A, B, C, D, E]: ");
             scanf(" %1c", &cCategChoice);
+            while (getchar() != '\n');
 
             if (cCategChoice == 'A') {
                 if (CatAProgress > 0) {
                     printf("You chose category [A] %s\n", Title1);
 
                     nValidQ = ValidateQuestion(Cat1P1, Cat1P2, Cat1P3, Cat1P4, Cat1P5);
-                    int nothing;
 
                     switch (nValidQ){
                         case 1:{
-                            CheckAnswer(Cat1Q1, Cat1Ch1, Cat1Ans1, nActiveScore, Cat1P1, strActivePlayer, &CatAProgress);
+                            nAnswerStatus = CheckAnswer(Cat1Q1, Cat1Ch1, Cat1Ans1, nActiveScore, Cat1P1, strActivePlayer, &CatAProgress);
                         } break;
 
                         case 2:{

@@ -63,26 +63,31 @@ void PlayGame(){
     int nJeopardyProgress;
 
     nTurnTracker = 1;
-    nJeopardyProgress = 20;
+
+    //Sets the number of questions that will be answered per round
+    nJeopardyProgress = 4;
 
     nPlayers = getPlayers();
     printf("What are the Player/s' names? \n");
 
     if (nPlayers >= 1){
         printf("What is Player 1's name (Max of 15 characters long and no spaces): ");
-        scanf("%10s", &strPlayer1Name);
+        scanf("%15s", &strPlayer1Name);
+        while (getchar() != '\n');
         nFirstScore = 1;
     }
 
     if (nPlayers >= 2){
         printf("What is Player 2's name (Max of 15 characters long and no spaces): ");
-        scanf("%10s", &strPlayer2Name);
+        scanf("%15s", &strPlayer2Name);
+        while (getchar() != '\n');
         nSecondScore = 2;
     } 
     
     if (nPlayers >= 3){
         printf("What is Player 3's name (Max of 15 characters long and no spaces): ");
-        scanf("%10s", &strPlayer3Name);
+        scanf("%15s", &strPlayer3Name);
+        while (getchar() != '\n');
         nThirdScore = 3;
     }
 
@@ -139,17 +144,17 @@ void PlayGame(){
 
     clearTerminal();
 
-    printTable(Cat1P1, Cat2P1, Cat3P1, Cat4P1,
-               Cat1P2, Cat2P2, Cat3P2, Cat4P2,
-               Cat1P3, Cat2P3, Cat3P3, Cat4P3,
-               Cat1P4, Cat2P4, Cat3P4, Cat4P4,
-               Cat1P5, Cat2P5, Cat3P5, Cat4P5);
-
     printf("It's time for the first round of JEOPARDY!\n");
 
     setPlayer(nTurnTracker, strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore, strActivePlayer, &nActiveScore);
 
     do {
+            printTable(Cat1P1, Cat2P1, Cat3P1, Cat4P1,
+               Cat1P2, Cat2P2, Cat3P2, Cat4P2,
+               Cat1P3, Cat2P3, Cat3P3, Cat4P3,
+               Cat1P4, Cat2P4, Cat3P4, Cat4P4,
+               Cat1P5, Cat2P5, Cat3P5, Cat4P5);
+
         PickAnswer(
                    strTitle1, strTitle2, strTitle3, strTitle4,
         
@@ -183,6 +188,14 @@ void PlayGame(){
                    &nFirstScore, &nSecondScore, &nThirdScore,
                    strActivePlayer, &nActiveScore
                    );
+
+            //     printTable(Cat1P1, Cat2P1, Cat3P1, Cat4P1,
+            //    Cat1P2, Cat2P2, Cat3P2, Cat4P2,
+            //    Cat1P3, Cat2P3, Cat3P3, Cat4P3,
+            //    Cat1P4, Cat2P4, Cat3P4, Cat4P4,
+            //    Cat1P5, Cat2P5, Cat3P5, Cat4P5);
+
+               nJeopardyProgress -= 1;
 
 
     } while (nJeopardyProgress >= 0);
