@@ -116,7 +116,7 @@ void PickAnswer(
                                 nFailedQ = 1;
 
                                 do {
-                                    changePlayers(&nFailCounter, nTurnTracker, nPlayers, strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore, strActivePlayer, nActiveScore);
+                                    changePlayers(nTurnTracker, nPlayers, strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore, strActivePlayer, nActiveScore);
                                     printf("What is your answer to the question? ");
                                     scanf(" %1c", &cRebound);
                                     while (getchar() != '\n');
@@ -169,7 +169,7 @@ void PickAnswer(
                                 nFailedQ = 1;
 
                                 do {
-                                    changePlayers(&nFailCounter, nTurnTracker, nPlayers, strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore, strActivePlayer, nActiveScore);
+                                    changePlayers(nTurnTracker, nPlayers, strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore, strActivePlayer, nActiveScore);
                                     printf("What is your answer to the question? ");
                                     scanf(" %1c", &cRebound);
                                     while (getchar() != '\n');
@@ -215,8 +215,56 @@ void PickAnswer(
                         } break;
 
                         case 3:{
-                            printf("Your question is: %s\n", Cat1Q3);
-                            printf("Your choices are (%c):\n %s\n", Cat1Ans3, Cat1Ch3);
+                            nAnswerStatus = CheckAnswer(Cat1Q3, Cat1Ch3, Cat1Ans3, nActiveScore, Cat1P3, strActivePlayer, &CatAProgress);
+
+                            if (nAnswerStatus > 0 && nPlayers > 1){
+                                nFailCounter++;
+                                nFailedQ = 1;
+
+                                do {
+                                    changePlayers(nTurnTracker, nPlayers, strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore, strActivePlayer, nActiveScore);
+                                    printf("What is your answer to the question? ");
+                                    scanf(" %1c", &cRebound);
+                                    while (getchar() != '\n');
+
+                                    if (cRebound == Cat1Ans3){
+                                        printf("Correct! You won $%d\n", *Cat1P3);
+                                        *nActiveScore += *Cat1P3;
+                                        nFailedQ = 0;
+
+                                        printf("Press Any Key to Continue\n");  
+                                         getch();
+
+                                         clearTerminal();
+                                    } else {
+                                        printf("Sorry but that answer is incorrect. You lost $%d\n\n", *Cat1P3);
+                                        *nActiveScore -= *Cat1P3;
+                                    }
+
+                                    nFailCounter += 1;
+
+                                    if (nFailCounter == nPlayers && cRebound != Cat1Ans3){
+                                        printf("Nobody got the correct answer.\n");
+                                        nFailedQ = 0;
+
+                                        printf("Press Any Key to Continue\n");  
+                                         getch();
+
+                                         clearTerminal();
+                                    }
+                                    
+                                } while (nFailedQ);
+                            }
+
+                            *Cat1P3 = 0;
+
+                            if (nPlayers == 1 && nAnswerStatus > 0){
+                                        printf("Press Any Key to Continue\n");  
+                                         getch();
+
+                                         clearTerminal();
+                            }
+                            
                         } break;
 
                         case 4:{

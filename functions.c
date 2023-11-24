@@ -279,7 +279,17 @@ while (nChoiceLoop2) {
 }
 }
 
-void changePlayers(int *nFailCounter, int *nTurnTracker, int nPlayers,
+/*
+	Description: Changes the active player when a wrong answer is chosen
+	Precondition: None
+	@ param 
+    nTurnTracker - Tracks which player is active 
+    strTh - the names of the players
+    nThScore - the scores of the players
+    strActivePlayer and nActiveScore - active player name and score
+	@return none
+*/
+void changePlayers(int *nTurnTracker, int nPlayers,
                    char* strFirst, char* strSecond, char* strThird,
                    int* nFirstScore, int* nSecondScore, int* nThirdScore,
                    char* strActivePlayer, int* nActiveScore){
