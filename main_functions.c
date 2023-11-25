@@ -5,6 +5,9 @@
 	@return number of the question
 */
 int CheckAnswer(char* CatQ, char* CatCh, char CatAns, int* nActiveScore, int* CatP, char* strActivePlayer, int* CatProgress){
+    printf("\n%s \n%s \n%c \n%d \n%d \n%s \n%d\n", CatQ, CatCh, CatAns, nActiveScore, CatP, strActivePlayer, CatProgress);
+
+
     char cAnswerChoice;
 
     printf("Your question is: %s\n", CatQ);
@@ -40,7 +43,7 @@ int CheckAnswer(char* CatQ, char* CatCh, char CatAns, int* nActiveScore, int* Ca
 	@return number of the question
 */
 
-void PickAnswer(
+void PickChoice(
                 char* Title1, char* Title2, char* Title3, char* Title4, 
 
                 char* Cat1Q1, char* Cat2Q1, char* Cat3Q1, char* Cat4Q1,
@@ -67,7 +70,7 @@ void PickAnswer(
                 int* Cat1P4, int* Cat2P4, int* Cat3P4, int* Cat4P4,
                 int* Cat1P5, int* Cat2P5, int* Cat3P5, int* Cat4P5,
 
-                int* nJeopardyProgress, int* nTurnTracker, int nPlayers,
+                int* nTurnTracker, int nPlayers,
 
                 char* strFirst, char* strSecond, char* strThird,
                 int* nFirstScore, int* nSecondScore, int* nThirdScore,
@@ -109,56 +112,12 @@ void PickAnswer(
 
                     switch (nValidQ){
                         case 1:{
-                            nAnswerStatus = CheckAnswer(Cat1Q1, Cat1Ch1, Cat1Ans1, nActiveScore, Cat1P1, strActivePlayer, &CatAProgress);
+                        
+                            PickAnswer(Cat1Q1, Cat1Ch1, Cat1Ans1, Cat1P1, 
+                                       nTurnTracker, nPlayers, CatAProgress, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore);
 
-                            if (nAnswerStatus > 0 && nPlayers > 1){
-                                nFailCounter++;
-                                nFailedQ = 1;
-
-                                do {
-                                    changePlayers(nTurnTracker, nPlayers, strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore, strActivePlayer, nActiveScore);
-                                    printf("What is your answer to the question? ");
-                                    scanf(" %1c", &cRebound);
-                                    while (getchar() != '\n');
-
-                                    if (cRebound == Cat1Ans1){
-                                        printf("Correct! You won $%d\n", *Cat1P1);
-                                        *nActiveScore += *Cat1P1;
-                                        nFailedQ = 0;
-
-                                        printf("Press Any Key to Continue\n");  
-                                         getch();
-
-                                         clearTerminal();
-                                    } else {
-                                        printf("Sorry but that answer is incorrect. You lost $%d\n\n", *Cat1P1);
-                                        *nActiveScore -= *Cat1P1;
-                                    }
-
-                                    nFailCounter += 1;
-
-                                    if (nFailCounter == nPlayers && cRebound != Cat1Ans1){
-                                        printf("Nobody got the correct answer.\n");
-                                        nFailedQ = 0;
-
-                                        printf("Press Any Key to Continue\n");  
-                                         getch();
-
-                                         clearTerminal();
-                                    }
-                                    
-                                } while (nFailedQ);
-                            }
-
-                            *Cat1P1 = 0;
-
-                            if (nPlayers == 1 && nAnswerStatus > 0){
-                                        printf("Press Any Key to Continue\n");  
-                                         getch();
-
-                                         clearTerminal();
-                            }
-                            
                         } break;
 
                         case 2:{

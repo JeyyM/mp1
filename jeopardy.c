@@ -156,7 +156,7 @@ void PlayGame(){
                Cat1P4, Cat2P4, Cat3P4, Cat4P4,
                Cat1P5, Cat2P5, Cat3P5, Cat4P5);
 
-        PickAnswer(
+        PickChoice(
                    strTitle1, strTitle2, strTitle3, strTitle4,
         
                    Cat1Q1, Cat2Q1, Cat3Q1, Cat4Q1,
@@ -183,7 +183,7 @@ void PlayGame(){
                    &Cat1P4, &Cat2P4, &Cat3P4, &Cat4P4,
                    &Cat1P5, &Cat2P5, &Cat3P5, &Cat4P5,
 
-                   &nJeopardyProgress, &nTurnTracker, nPlayers,
+                   &nTurnTracker, nPlayers,
 
                    strFirst, strSecond, strThird,
                    &nFirstScore, &nSecondScore, &nThirdScore,
