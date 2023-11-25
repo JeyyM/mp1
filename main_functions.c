@@ -36,15 +36,11 @@ void PickChoice(
 
                 char* strFirst, char* strSecond, char* strThird,
                 int* nFirstScore, int* nSecondScore, int* nThirdScore,
-                char* strActivePlayer, int* nActiveScore
+                char* strActivePlayer, int* nActiveScore,
+
+                int* CatAProgress, int* CatBProgress, int* CatCProgress, int* CatDProgress, int* CatEProgress, int* nJeopardyProgress, int* nLength2
                 )
     {
-
-    int CatAProgress = 5;
-    int CatBProgress = 5;
-    int CatCProgress = 5;
-    int CatDProgress = 5;
-    int CatEProgress = 5;
 
     int nChoiceLoop1 = 1;
     int nFailCounter = 0;
@@ -67,17 +63,17 @@ void PickChoice(
             while (getchar() != '\n');
 
             if (cCategChoice == 'A') {
-                printf("\nCat A progress%d\n", CatAProgress);
-                if (CatAProgress > 0) {
+                if (*CatAProgress > 0) {
                     printf("You chose category [A] %s\n", Title1);
 
                     nValidQ = ValidateQuestion(Cat1P1, Cat1P2, Cat1P3, Cat1P4, Cat1P5);
+                    *CatAProgress -= 1;
 
                     switch (nValidQ){
                         case 1:{
                         
                             PickAnswer(Cat1Q1, Cat1Ch1, Cat1Ans1, Cat1P1, 
-                                       nTurnTracker, nPlayers, &CatAProgress, nFailCounter,
+                                       nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
                                        strActivePlayer, nActiveScore);
 
@@ -85,28 +81,28 @@ void PickChoice(
 
                         case 2:{
                             PickAnswer(Cat1Q2, Cat1Ch2, Cat1Ans2, Cat1P2, 
-                                       nTurnTracker, nPlayers, &CatAProgress, nFailCounter,
+                                       nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
                                        strActivePlayer, nActiveScore);
                         } break;
 
                         case 3:{
                             PickAnswer(Cat1Q3, Cat1Ch3, Cat1Ans3, Cat1P3, 
-                                       nTurnTracker, nPlayers, &CatAProgress, nFailCounter,
+                                       nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
                                        strActivePlayer, nActiveScore);
                         } break;
 
                         case 4:{
                             PickAnswer(Cat1Q4, Cat1Ch4, Cat1Ans4, Cat1P4, 
-                                       nTurnTracker, nPlayers, &CatAProgress, nFailCounter,
+                                       nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
                                        strActivePlayer, nActiveScore);
                         } break;
 
                         case 5:{
                             PickAnswer(Cat1Q5, Cat1Ch5, Cat1Ans5, Cat1P5, 
-                                       nTurnTracker, nPlayers, &CatAProgress, nFailCounter,
+                                       nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
                                        strActivePlayer, nActiveScore);
                         } break;               
@@ -117,36 +113,166 @@ void PickChoice(
                     printf("The category has been completed. Pick another.\n");
                 }
             } else if (cCategChoice == 'B') {
-                if (CatBProgress > 0) {
-                    printf("You chose category B\n");
+                if (*CatBProgress > 0) {
+                    printf("You chose category [B] %s\n", Title2);
+
+                    nValidQ = ValidateQuestion(Cat2P1, Cat2P2, Cat2P3, Cat2P4, Cat2P5);
+                    *CatBProgress -= 1;
+
+                    switch (nValidQ){
+                        case 1:{
+                        
+                            PickAnswer(Cat2Q1, Cat2Ch1, Cat2Ans1, Cat2P1, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore);
+
+                        } break;
+
+                        case 2:{
+                            PickAnswer(Cat2Q2, Cat2Ch2, Cat2Ans2, Cat2P2, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore);
+                        } break;
+
+                        case 3:{
+                            PickAnswer(Cat2Q3, Cat2Ch3, Cat2Ans3, Cat2P3, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore);
+                        } break;
+
+                        case 4:{
+                            PickAnswer(Cat2Q4, Cat2Ch4, Cat2Ans4, Cat2P4, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore);
+                        } break;
+
+                        case 5:{
+                            PickAnswer(Cat2Q5, Cat2Ch5, Cat2Ans5, Cat2P5, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore);
+                        } break;               
+                    }
+
                     nChoiceLoop1 = 0;
                 } else {
                     printf("The category has been completed. Pick another.\n");
                 }
             } else if (cCategChoice == 'C') {
-                if (CatBProgress > 0) {
-                    printf("You chose category B\n");
+                if (*CatCProgress > 0) {
+                    printf("You chose category [C] %s\n", Title3);
+
+                    nValidQ = ValidateQuestion(Cat3P1, Cat3P2, Cat3P3, Cat3P4, Cat3P5);
+                    *CatCProgress -= 1;
+
+                    switch (nValidQ){
+                        case 1:{
+                        
+                            PickAnswer(Cat3Q1, Cat3Ch1, Cat3Ans1, Cat3P1, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore);
+
+                        } break;
+
+                        case 2:{
+                            PickAnswer(Cat3Q2, Cat3Ch2, Cat3Ans2, Cat3P2, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore);
+                        } break;
+
+                        case 3:{
+                            PickAnswer(Cat3Q3, Cat3Ch3, Cat3Ans3, Cat3P3, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore);
+                        } break;
+
+                        case 4:{
+                            PickAnswer(Cat3Q4, Cat3Ch4, Cat3Ans4, Cat3P4, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore);
+                        } break;
+
+                        case 5:{
+                            PickAnswer(Cat3Q5, Cat3Ch5, Cat3Ans5, Cat3P5, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore);
+                        } break;               
+                    }
+
                     nChoiceLoop1 = 0;
                 } else {
                     printf("The category has been completed. Pick another.\n");
                 }
             } else if (cCategChoice == 'D') {
-                if (CatBProgress > 0) {
-                    printf("You chose category B\n");
+                if (*CatBProgress > 0) {
+                    printf("You chose category [D] %s\n", Title4);
+
+                    nValidQ = ValidateQuestion(Cat4P1, Cat4P2, Cat4P3, Cat4P4, Cat4P5);
+                    *CatDProgress -= 1;
+
+                    switch (nValidQ){
+                        case 1:{
+                        
+                            PickAnswer(Cat4Q1, Cat4Ch1, Cat4Ans1, Cat4P1, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore);
+
+                        } break;
+
+                        case 2:{
+                            PickAnswer(Cat4Q2, Cat4Ch2, Cat4Ans2, Cat4P2, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore);
+                        } break;
+
+                        case 3:{
+                            PickAnswer(Cat4Q3, Cat4Ch3, Cat4Ans3, Cat4P3, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore);
+                        } break;
+
+                        case 4:{
+                            PickAnswer(Cat4Q4, Cat4Ch4, Cat4Ans4, Cat4P4, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore);
+                        } break;
+
+                        case 5:{
+                            PickAnswer(Cat4Q5, Cat4Ch5, Cat4Ans5, Cat4P5, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore);
+                        } break;               
+                    }
+
                     nChoiceLoop1 = 0;
                 } else {
                     printf("The category has been completed. Pick another.\n");
                 }
             } else if (cCategChoice == 'E') {
-                printf("You chose to exit the game\n");
+                clearTerminal();
+                printf("You chose to exit the game.\n");
+
+                *nJeopardyProgress = 0;
+                *nLength2 = 0;
                 nChoiceLoop1 = 0;
             } else {
                 printf("Invalid choice. Please pick from: [A, B, C, D, E]\n");
             }
         }
-
-    printf("Out of the loop");
-
         }
 
 

@@ -373,24 +373,24 @@ int CheckAnswer(char* CatQ, char* CatCh, char CatAns, int* nActiveScore, int* Ca
 
 /*
 	Description: Picks the player's final answer
-	Precondition: None
+	Precondition: The category hasn't been completed yet
 	@ param 
-    nTurnTracker - Tracks which player is active 
-    strTh - the names of the players
-    nThScore - the scores of the players
-    strActivePlayer and nActiveScore - active player name and score
+    CatQ Ch Ans P - the category item's details
+    nTurnTracker - Tracks which player is currently playing
+    nPlayers - the number of players
+    nFailCounter - number of times a question is answered wrong
+    nThScore - the players' scores
+    nActivePlayer and Score - the active player's name and score
 	@return none
 */
 
 void PickAnswer (char* CatQ, char* CatCh, char CatAns, int* CatP,
 
-                int* nTurnTracker, int nPlayers, int* CatProgress, int nFailCounter,
+                int* nTurnTracker, int nPlayers, int nFailCounter,
 
                 char* strFirst, char* strSecond, char* strThird,
                 int* nFirstScore, int* nSecondScore, int* nThirdScore,
                 char* strActivePlayer, int* nActiveScore){
-
-        *CatProgress -= 1;
 
         int nAnswerStatus = CheckAnswer(CatQ, CatCh, CatAns, nActiveScore, CatP, strActivePlayer);
         int nFailedQ;

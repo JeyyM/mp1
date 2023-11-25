@@ -19,7 +19,7 @@
 	@ param none
 	@return none
 */
-void PlayGame(){
+void PlayGame(int nLength1, int nLength2){
     int nPlayers;
     int nTurnTracker;
 
@@ -63,10 +63,16 @@ void PlayGame(){
 
     int nJeopardyProgress;
 
+    int CatAProgress = 5;
+    int CatBProgress = 5;
+    int CatCProgress = 5;
+    int CatDProgress = 5;
+    int CatEProgress = 5;
+
     nTurnTracker = 1;
 
     //Sets the number of questions that will be answered per round
-    nJeopardyProgress = 30;
+    nJeopardyProgress = nLength1;
 
     nPlayers = getPlayers();
     printf("What are the Player/s' names? \n");
@@ -95,7 +101,7 @@ void PlayGame(){
     orderPlayers(&nPlayers, strPlayer1Name, strPlayer2Name, strPlayer3Name, strFirst, strSecond, strThird);
 
     printf("Press Any Key to Continue\n");  
-    getch();  // waits for a char on key press
+    getch();
 
     clearTerminal();
 
@@ -187,27 +193,95 @@ void PlayGame(){
 
                    strFirst, strSecond, strThird,
                    &nFirstScore, &nSecondScore, &nThirdScore,
-                   strActivePlayer, &nActiveScore
+                   strActivePlayer, &nActiveScore,
+
+                   &CatAProgress, &CatBProgress, &CatCProgress, &CatDProgress, &CatEProgress, &nJeopardyProgress, &nLength2
                    );
 
                nJeopardyProgress -= 1;
 
     } while (nJeopardyProgress > 0);
 
-    printf("Regular jeaopardy finish");
+    printf("End of Jeopardy Round\n");
+
+    // Updates the current player's score
+    // Happens because the ChangePlayer only updates the person who answers wrong
+        switch (nTurnTracker){
+        case 1:{
+            nFirstScore = nActiveScore;
+            break;
+        }
+        case 2:{
+            nSecondScore = nActiveScore;
+            break;
+        }
+        case 3:{
+            nThirdScore = nActiveScore;
+            break;
+        }
+    }
+
+    printf("CURRENT STANDINGS:\n%s: %d\n", strFirst, nFirstScore);
+
+    if (nPlayers >=2 ){
+            printf("%s: %d\n", strSecond, nSecondScore);
+    }
+
+    if (nPlayers >=3 ){
+            printf("%s: %d\n", strThird, nThirdScore);
+    }
+
+    printf("Press Any Key to Continue\n");  
+    getch();
+
+    clearTerminal();
     
 }
 
 int main ()
 {
+    while (1){
 	char cMode;
+    int nLength1;
+    int nLengthValid1;
+    int nLength2;
+    int nLengthValid2;
 
     cMode = startMenu();
 
     switch (cMode) {
         case '1':
         {
-            PlayGame();
+            //Sets jeopardy and double round scores
+        do {
+            printf("Set Jeopardy Round Length (1 to 20): ");
+            nLengthValid1 = scanf("%d", &nLength1);
+
+            int ch;
+            while ((ch = getchar()) != '\n' && ch != EOF);
+
+            if (nLengthValid1 != 1) {
+                printf("Invalid input, only put numbers between 1 and 20.\n");
+            } else if (nLength1 < 1 || nLength1 > 20) {
+                printf("Number out of range, please enter a number between 1 and 20.\n");
+            }
+         } while (nLengthValid1 != 1 || nLength1 < 1 || nLength1 > 20);
+
+                 do {
+            printf("Set Double Round Length (1 to 20): ");
+            nLengthValid2 = scanf("%d", &nLength2);
+
+            int ch;
+            while ((ch = getchar()) != '\n' && ch != EOF);
+
+            if (nLengthValid2 != 1) {
+                printf("Invalid input, only put numbers between 1 and 20.\n");
+            } else if (nLength2 < 1 || nLength2 > 20) {
+                printf("Number out of range, please enter a number between 1 and 20.\n");
+            }
+         } while (nLengthValid2 != 1 || nLength2 < 1 || nLength2 > 20);
+
+            PlayGame(nLength1, nLength2);
         } break;
 
         case '2': 
@@ -219,6 +293,7 @@ int main ()
         { 
             
         } break;
+    }
     }
 	
 	return 0;
