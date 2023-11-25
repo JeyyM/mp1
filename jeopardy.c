@@ -66,7 +66,7 @@ void PlayGame(){
     nTurnTracker = 1;
 
     //Sets the number of questions that will be answered per round
-    nJeopardyProgress = 4;
+    nJeopardyProgress = 30;
 
     nPlayers = getPlayers();
     printf("What are the Player/s' names? \n");
@@ -106,7 +106,7 @@ void PlayGame(){
         do {
             nCateg2 = randMinMax(1, 7);
         } while (nCateg2 == nCateg1);
-    }
+    } 
 
     nCateg3 = randMinMax(1, 7);
     if (nCateg3 == nCateg1 || nCateg3 == nCateg2) {

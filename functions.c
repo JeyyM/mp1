@@ -294,10 +294,6 @@ void changePlayers(int *nTurnTracker, int nPlayers,
                    int* nFirstScore, int* nSecondScore, int* nThirdScore,
                    char* strActivePlayer, int* nActiveScore){
 
-                    printf("CHECK 5\n");
-
-                    printf("over here %d\n", nTurnTracker);
-
                     switch (*nTurnTracker){
                         case 1:{
                             *nFirstScore = *nActiveScore;
@@ -312,8 +308,6 @@ void changePlayers(int *nTurnTracker, int nPlayers,
                             break;
                         }
                     }
-
-                    printf("CHECK 6\n");
 
                     if (*nTurnTracker == nPlayers){
                         *nTurnTracker = 1;
@@ -348,7 +342,7 @@ void changePlayers(int *nTurnTracker, int nPlayers,
 	@ param p# - the prizes for each item
 	@return number of the question
 */
-int CheckAnswer(char* CatQ, char* CatCh, char CatAns, int* nActiveScore, int* CatP, char* strActivePlayer, int* CatProgress){
+int CheckAnswer(char* CatQ, char* CatCh, char CatAns, int* nActiveScore, int* CatP, char* strActivePlayer){
 
     char cAnswerChoice;
 
@@ -363,7 +357,6 @@ int CheckAnswer(char* CatQ, char* CatCh, char CatAns, int* nActiveScore, int* Ca
         printf("Congrats, %s! You won $%d \n", strActivePlayer, *CatP);
         *nActiveScore += *CatP;
         *CatP = 0;
-        *CatProgress -= 1;
 
         printf("Press Any Key to Continue\n");  
         getch();
@@ -397,22 +390,18 @@ void PickAnswer (char* CatQ, char* CatCh, char CatAns, int* CatP,
                 int* nFirstScore, int* nSecondScore, int* nThirdScore,
                 char* strActivePlayer, int* nActiveScore){
 
-        int nAnswerStatus = CheckAnswer(CatQ, CatCh, CatAns, nActiveScore, CatP, strActivePlayer, CatProgress);
+        *CatProgress -= 1;
+
+        int nAnswerStatus = CheckAnswer(CatQ, CatCh, CatAns, nActiveScore, CatP, strActivePlayer);
         int nFailedQ;
         char cRebound;
-
-        printf("CHECK 1\n");
 
     if (nAnswerStatus > 0 && nPlayers > 1){
         nFailCounter++;
         nFailedQ = 1;
 
-        printf("CHECK 2\n");
-
         do {
-            printf("CHECK 3\n");
-            printf("CHECK 4 %d\n", nFailedQ);
-            changePlayers(*nTurnTracker, nPlayers, strFirst, strSecond, strThird, *nFirstScore, *nSecondScore, *nThirdScore, strActivePlayer, *nActiveScore);
+            changePlayers(nTurnTracker, nPlayers, strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore, strActivePlayer, nActiveScore);
             printf("What is your answer to the question? ");
             scanf(" %1c", &cRebound);
             while (getchar() != '\n');
@@ -427,7 +416,7 @@ void PickAnswer (char* CatQ, char* CatCh, char CatAns, int* CatP,
 
                     clearTerminal();
             } else {
-                printf("Sorry but that answer is incorrect. You lost $%d\n\n", *CatP);
+                printf("Sorry but that answer is incorrect. \nYou lost $%d\n\n", *CatP);
                 *nActiveScore -= *CatP;
             }
 
@@ -436,6 +425,8 @@ void PickAnswer (char* CatQ, char* CatCh, char CatAns, int* CatP,
             if (nFailCounter == nPlayers && cRebound != CatAns){
                 printf("Nobody got the correct answer.\n");
                 nFailedQ = 0;
+
+                changePlayers(nTurnTracker, nPlayers, strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore, strActivePlayer, nActiveScore);
 
                 printf("Press Any Key to Continue\n");  
                     getch();
