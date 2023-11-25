@@ -347,21 +347,26 @@ void changePlayers(int *nTurnTracker, int nPlayers,
 	@return none
 */
 
-void PickAnswer (char* CatQ, char* CatCh, char CatAns, int* CatP,
+// void Tester(char* CatQ, char* CatCh, char CatAns, int nActiveScore, int CatP, char* strActivePlayer, int CatProgress){
+//     printf("TESTER\n%s \n%s \n%c \n%d \n%d \n%s \n%d\n", CatQ, CatCh, CatAns, nActiveScore, CatP, strActivePlayer, CatProgress);
 
-                int* nTurnTracker, int nPlayers, int CatProgress, int nFailCounter,
+//     CatP = 0;
+// }
 
-                char* strFirst, char* strSecond, char* strThird,
-                int* nFirstScore, int* nSecondScore, int* nThirdScore,
-                char* strActivePlayer, int* nActiveScore){
+void PickAnswer (int* CatP){
 
+    printf("PICK ANSWER %d\n", CatP);
+
+    int nAnswerStatus = CheckAnswer(CatP);
         // printf("\nEverything check: \n CatQ %s\n CatCh %s\n CatAns %c\n CatP %d\n", CatQ, CatCh, CatAns, *CatP);
         // printf("\nEverything check 2: \n nTurnTracker %d\n nPlayers %d\n CatProgress %d\n nFailCounter %d\n", *nTurnTracker, nPlayers, &CatProgress, nFailCounter);
         // printf("strFirst %s\n strSecond %s\n strThird %s\n nFirstScore %d\n nSecondScore %d\n nThirdScore %d\n strActivePlayer %s\n nActiveScore %d\n", strFirst, strSecond, strThird, *nFirstScore, *nSecondScore, *nThirdScore, strActivePlayer, *nActiveScore);
 
-    printf("\n%s \n%s \n%c \n%d \n%d \n%s \n%d\n", CatQ, CatCh, CatAns, nActiveScore, CatP, strActivePlayer, &CatProgress);
+    // printf("\n%s \n%s \n%c \n%d \n%d \n%s \n%d\n", CatQ, CatCh, CatAns, *nActiveScore, *CatP, strActivePlayer, *CatProgress);
 
-        int nAnswerStatus = CheckAnswer(CatQ, CatCh, CatAns, nActiveScore, *CatP, strActivePlayer, CatProgress);
+    // Tester(CatQ, CatCh, CatAns, *nActiveScore, *CatP, strActivePlayer, *CatProgress);
+
+        // int nAnswerStatus = CheckAnswer(CatQ, CatCh, *CatAns, nActiveScore, CatP, strActivePlayer, CatProgress);
     //     int nFailedQ;
     //     char cRebound;
 
