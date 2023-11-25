@@ -30,6 +30,32 @@ void printJeopardy()
 }
 
 /*
+	Description: Prints the double round
+	Precondition: none
+	@ param none
+	@return none
+*/
+void printDouble()
+{
+	printf("         #####     #####   ##   ##  ######   ####     #######  \n");
+    printf("          ## ##   ### ###  ##   ##   ##  ##   ##       ##   #  \n");
+    printf("          ##  ##  ##   ##  ##   ##   ##  ##   ##       ##      \n");
+    printf("          ##  ##  ##   ##  ##   ##   #####    ##       ####    \n");
+    printf("          ##  ##  ##   ##  ##   ##   ##  ##   ##       ##      \n");
+    printf("          ## ##   ### ###  ##   ##   ##  ##   ##  ##   ##   #  \n");
+    printf("         #####     #####    #####   ######   #######  #######  \n");
+    printf("                                                               \n");
+    printf("         ######    #####   ##   ##  ##   ##  #####    \n");
+    printf("          ##  ##  ### ###  ##   ##  ###  ##   ## ##   \n");
+    printf("          ##  ##  ##   ##  ##   ##  #### ##   ##  ##  \n");
+    printf("          #####   ##   ##  ##   ##  #######   ##  ##  \n");
+    printf("          ## ##   ##   ##  ##   ##  ## ####   ##  ##  \n");
+    printf("          ## ##   ### ###  ##   ##  ##  ###   ## ##   \n");
+    printf("         #### ##   #####    #####   ##   ##  #####    \n");
+    printf("                                                       \n");
+}
+
+/*
 	Description: These printers are for making the jeopardy table
 	Precondition: none
 	@ param the row#x are the price values
