@@ -342,7 +342,7 @@ void changePlayers(int *nTurnTracker, int nPlayers,
 	@ param p# - the prizes for each item
 	@return number of the question
 */
-int CheckAnswer(char* CatQ, char* CatCh, char CatAns, int* nActiveScore, int* CatP, char* strActivePlayer){
+int CheckAnswer(char* CatQ, char* CatCh, char CatAns, int* nActiveScore, int* CatP, char* strActivePlayer, int nDoubleMode){
 
     char cAnswerChoice;
 
@@ -365,8 +365,12 @@ int CheckAnswer(char* CatQ, char* CatCh, char CatAns, int* nActiveScore, int* Ca
 
         return 0;
     } else {
-        printf("Sorry, %s, that is the wrong answer.\n You lost $%d\n", strActivePlayer, *CatP);
-        *nActiveScore -= *CatP;
+        if (nDoubleMode){
+            printf("Sorry, %s, that is the wrong answer.\n You lost $%d\n", strActivePlayer, *CatP);
+        } else {
+            printf("Sorry but that answer is incorrect. \nYour points have been reset to 0\n\n");
+        }
+        *nActiveScore = (*nActiveScore - *CatP)*nDoubleMode;
         return *CatP;
     }
 }
@@ -390,9 +394,9 @@ void PickAnswer (char* CatQ, char* CatCh, char CatAns, int* CatP,
 
                 char* strFirst, char* strSecond, char* strThird,
                 int* nFirstScore, int* nSecondScore, int* nThirdScore,
-                char* strActivePlayer, int* nActiveScore){
+                char* strActivePlayer, int* nActiveScore, int nDoubleMode){
 
-        int nAnswerStatus = CheckAnswer(CatQ, CatCh, CatAns, nActiveScore, CatP, strActivePlayer);
+        int nAnswerStatus = CheckAnswer(CatQ, CatCh, CatAns, nActiveScore, CatP, strActivePlayer, nDoubleMode);
         int nFailedQ;
         char cRebound;
 
@@ -416,8 +420,12 @@ void PickAnswer (char* CatQ, char* CatCh, char CatAns, int* CatP,
 
                     clearTerminal();
             } else {
-                printf("Sorry but that answer is incorrect. \nYou lost $%d\n\n", *CatP);
-                *nActiveScore -= *CatP;
+                if (nDoubleMode){
+                    printf("Sorry, %s, that is the wrong answer.\n You lost $%d\n", strActivePlayer, *CatP);
+                } else {
+                    printf("Sorry but that answer is incorrect. \nYour points have been reset to 0\n\n");
+                }
+                *nActiveScore = (*nActiveScore - *CatP)*nDoubleMode;
             }
 
             nFailCounter += 1;

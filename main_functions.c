@@ -38,7 +38,8 @@ void PickChoice(
                 int* nFirstScore, int* nSecondScore, int* nThirdScore,
                 char* strActivePlayer, int* nActiveScore,
 
-                int* CatAProgress, int* CatBProgress, int* CatCProgress, int* CatDProgress, int* CatEProgress, int* nJeopardyProgress, int* nLength2
+                int* CatAProgress, int* CatBProgress, int* CatCProgress, int* CatDProgress, int* CatEProgress, int* nJeopardyProgress, int* nLength2,
+                int nDoubleMode
                 )
     {
 
@@ -75,7 +76,7 @@ void PickChoice(
                             PickAnswer(Cat1Q1, Cat1Ch1, Cat1Ans1, Cat1P1, 
                                        nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
-                                       strActivePlayer, nActiveScore);
+                                       strActivePlayer, nActiveScore, nDoubleMode);
 
                         } break;
 
@@ -83,28 +84,28 @@ void PickChoice(
                             PickAnswer(Cat1Q2, Cat1Ch2, Cat1Ans2, Cat1P2, 
                                        nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
-                                       strActivePlayer, nActiveScore);
+                                       strActivePlayer, nActiveScore, nDoubleMode);
                         } break;
 
                         case 3:{
                             PickAnswer(Cat1Q3, Cat1Ch3, Cat1Ans3, Cat1P3, 
                                        nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
-                                       strActivePlayer, nActiveScore);
+                                       strActivePlayer, nActiveScore, nDoubleMode);
                         } break;
 
                         case 4:{
                             PickAnswer(Cat1Q4, Cat1Ch4, Cat1Ans4, Cat1P4, 
                                        nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
-                                       strActivePlayer, nActiveScore);
+                                       strActivePlayer, nActiveScore, nDoubleMode);
                         } break;
 
                         case 5:{
                             PickAnswer(Cat1Q5, Cat1Ch5, Cat1Ans5, Cat1P5, 
                                        nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
-                                       strActivePlayer, nActiveScore);
+                                       strActivePlayer, nActiveScore, nDoubleMode);
                         } break;               
                     }
 
@@ -125,7 +126,7 @@ void PickChoice(
                             PickAnswer(Cat2Q1, Cat2Ch1, Cat2Ans1, Cat2P1, 
                                        nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
-                                       strActivePlayer, nActiveScore);
+                                       strActivePlayer, nActiveScore, nDoubleMode);
 
                         } break;
 
@@ -133,28 +134,28 @@ void PickChoice(
                             PickAnswer(Cat2Q2, Cat2Ch2, Cat2Ans2, Cat2P2, 
                                        nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
-                                       strActivePlayer, nActiveScore);
+                                       strActivePlayer, nActiveScore, nDoubleMode);
                         } break;
 
                         case 3:{
                             PickAnswer(Cat2Q3, Cat2Ch3, Cat2Ans3, Cat2P3, 
                                        nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
-                                       strActivePlayer, nActiveScore);
+                                       strActivePlayer, nActiveScore, nDoubleMode);
                         } break;
 
                         case 4:{
                             PickAnswer(Cat2Q4, Cat2Ch4, Cat2Ans4, Cat2P4, 
                                        nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
-                                       strActivePlayer, nActiveScore);
+                                       strActivePlayer, nActiveScore, nDoubleMode);
                         } break;
 
                         case 5:{
                             PickAnswer(Cat2Q5, Cat2Ch5, Cat2Ans5, Cat2P5, 
                                        nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
-                                       strActivePlayer, nActiveScore);
+                                       strActivePlayer, nActiveScore, nDoubleMode);
                         } break;               
                     }
 
@@ -175,7 +176,7 @@ void PickChoice(
                             PickAnswer(Cat3Q1, Cat3Ch1, Cat3Ans1, Cat3P1, 
                                        nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
-                                       strActivePlayer, nActiveScore);
+                                       strActivePlayer, nActiveScore, nDoubleMode);
 
                         } break;
 
@@ -183,28 +184,28 @@ void PickChoice(
                             PickAnswer(Cat3Q2, Cat3Ch2, Cat3Ans2, Cat3P2, 
                                        nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
-                                       strActivePlayer, nActiveScore);
+                                       strActivePlayer, nActiveScore, nDoubleMode);
                         } break;
 
                         case 3:{
                             PickAnswer(Cat3Q3, Cat3Ch3, Cat3Ans3, Cat3P3, 
                                        nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
-                                       strActivePlayer, nActiveScore);
+                                       strActivePlayer, nActiveScore, nDoubleMode);
                         } break;
 
                         case 4:{
                             PickAnswer(Cat3Q4, Cat3Ch4, Cat3Ans4, Cat3P4, 
                                        nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
-                                       strActivePlayer, nActiveScore);
+                                       strActivePlayer, nActiveScore, nDoubleMode);
                         } break;
 
                         case 5:{
                             PickAnswer(Cat3Q5, Cat3Ch5, Cat3Ans5, Cat3P5, 
                                        nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
-                                       strActivePlayer, nActiveScore);
+                                       strActivePlayer, nActiveScore, nDoubleMode);
                         } break;               
                     }
 
@@ -225,7 +226,7 @@ void PickChoice(
                             PickAnswer(Cat4Q1, Cat4Ch1, Cat4Ans1, Cat4P1, 
                                        nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
-                                       strActivePlayer, nActiveScore);
+                                       strActivePlayer, nActiveScore, nDoubleMode);
 
                         } break;
 
@@ -233,28 +234,28 @@ void PickChoice(
                             PickAnswer(Cat4Q2, Cat4Ch2, Cat4Ans2, Cat4P2, 
                                        nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
-                                       strActivePlayer, nActiveScore);
+                                       strActivePlayer, nActiveScore, nDoubleMode);
                         } break;
 
                         case 3:{
                             PickAnswer(Cat4Q3, Cat4Ch3, Cat4Ans3, Cat4P3, 
                                        nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
-                                       strActivePlayer, nActiveScore);
+                                       strActivePlayer, nActiveScore, nDoubleMode);
                         } break;
 
                         case 4:{
                             PickAnswer(Cat4Q4, Cat4Ch4, Cat4Ans4, Cat4P4, 
                                        nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
-                                       strActivePlayer, nActiveScore);
+                                       strActivePlayer, nActiveScore, nDoubleMode);
                         } break;
 
                         case 5:{
                             PickAnswer(Cat4Q5, Cat4Ch5, Cat4Ans5, Cat4P5, 
                                        nTurnTracker, nPlayers, nFailCounter,
                                        strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
-                                       strActivePlayer, nActiveScore);
+                                       strActivePlayer, nActiveScore, nDoubleMode);
                         } break;               
                     }
 

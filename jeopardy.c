@@ -23,7 +23,9 @@
 
 void PlayGame(int nLength1, int* nLength2, int* nPlayersHold, int* nTurnTrackerHold, 
               char* strFirstHold, char* strSecondHold, char* strThirdHold, char* strActivePlayerHold, 
-              int* nFirstScoreHold, int* nSecondScoreHold, int* nThirdScoreHold, int* nActiveScoreHold){
+              int* nFirstScoreHold, int* nSecondScoreHold, int* nThirdScoreHold, int* nActiveScoreHold, int nDoubleMode){
+
+    nDoubleMode = 1;
     int nPlayers;
     int nTurnTracker;
 
@@ -199,7 +201,8 @@ void PlayGame(int nLength1, int* nLength2, int* nPlayersHold, int* nTurnTrackerH
                    &nFirstScore, &nSecondScore, &nThirdScore,
                    strActivePlayer, &nActiveScore,
 
-                   &CatAProgress, &CatBProgress, &CatCProgress, &CatDProgress, &CatEProgress, &nJeopardyProgress, nLength2
+                   &CatAProgress, &CatBProgress, &CatCProgress, &CatDProgress, &CatEProgress, &nJeopardyProgress, nLength2,
+                   nDoubleMode
                    );
 
                nJeopardyProgress -= 1;
@@ -256,7 +259,7 @@ void PlayGame(int nLength1, int* nLength2, int* nPlayersHold, int* nTurnTrackerH
 
 void PlayGame2(int* nLength2, int nPlayersHold, int nTurnTrackerHold, 
               char* strFirstHold, char* strSecondHold, char* strThirdHold, char* strActivePlayerHold, 
-              int nFirstScoreHold, int nSecondScoreHold, int nThirdScoreHold, int nActiveScoreHold){
+              int nFirstScoreHold, int nSecondScoreHold, int nThirdScoreHold, int nActiveScoreHold, int nDoubleMode, int* nFinal){
     int nPlayers = nPlayersHold;
     int nTurnTracker = nTurnTrackerHold;
 
@@ -397,10 +400,15 @@ void PlayGame2(int* nLength2, int nPlayersHold, int nTurnTrackerHold,
                    &nFirstScore, &nSecondScore, &nThirdScore,
                    strActivePlayer, &nActiveScore,
 
-                   &CatAProgress, &CatBProgress, &CatCProgress, &CatDProgress, &CatEProgress, &nJeopardyProgress, nLength2
+                   &CatAProgress, &CatBProgress, &CatCProgress, &CatDProgress, &CatEProgress, &nJeopardyProgress, nLength2,
+                   nDoubleMode
                    );
 
                nJeopardyProgress -= 1;
+
+               if (nJeopardyProgress == 1){
+                *nFinal = 1;
+               }
 
     } while (nJeopardyProgress > 0);
 
@@ -450,6 +458,8 @@ int main ()
     int nLengthValid2;
     int nDoubleMode;
     int nDoubleModeInput;
+
+    int nFinal = 0;
 
     cMode = startMenu();
 
@@ -512,13 +522,17 @@ int main ()
         printf("Chosen Penalty Mode: %d\n", nDoubleMode);
 
             PlayGame(nLength1, &nLength2, &nPlayersHold, &nTurnTrackerHold, strFirstHold, strSecondHold, strThirdHold,
-                     strActivePlayerHold, &nFirstScoreHold, &nSecondScoreHold, &nThirdScoreHold, &nActiveScoreHold);
+                     strActivePlayerHold, &nFirstScoreHold, &nSecondScoreHold, &nThirdScoreHold, &nActiveScoreHold, 1);
 
             if (nLength2 > 0){
                 printDouble();
 
             PlayGame2(&nLength2, nPlayersHold, nTurnTrackerHold, strFirstHold, strSecondHold, strThirdHold, strActivePlayerHold, 
-                      nFirstScoreHold, nSecondScoreHold, nThirdScoreHold, nActiveScoreHold);
+                      nFirstScoreHold, nSecondScoreHold, nThirdScoreHold, nActiveScoreHold, nDoubleMode, &nFinal);
+            }
+
+            if (nFinal){
+                printf("FINAL JEOPARDY START\n");
             }
             
         } break;
