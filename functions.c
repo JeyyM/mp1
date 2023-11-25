@@ -349,7 +349,7 @@ void changePlayers(int *nTurnTracker, int nPlayers,
 
 void PickAnswer (char* CatQ, char* CatCh, char CatAns, int* CatP,
 
-                int* nTurnTracker, int nPlayers, int CatProgress, int nFailCounter,
+                int* nTurnTracker, int nPlayers, int* CatProgress, int nFailCounter,
 
                 char* strFirst, char* strSecond, char* strThird,
                 int* nFirstScore, int* nSecondScore, int* nThirdScore,
@@ -361,56 +361,56 @@ void PickAnswer (char* CatQ, char* CatCh, char CatAns, int* CatP,
 
     printf("\n%s \n%s \n%c \n%d \n%d \n%s \n%d\n", CatQ, CatCh, CatAns, nActiveScore, CatP, strActivePlayer, &CatProgress);
 
-        int nAnswerStatus = CheckAnswer(CatQ, CatCh, CatAns, nActiveScore, *CatP, strActivePlayer, CatProgress);
-    //     int nFailedQ;
-    //     char cRebound;
+        int nAnswerStatus = CheckAnswer(CatQ, CatCh, CatAns, nActiveScore, CatP, strActivePlayer, CatProgress);
+        int nFailedQ;
+        char cRebound;
 
-    // if (nAnswerStatus > 0 && nPlayers > 1){
-    //     nFailCounter++;
-    //     nFailedQ = 1;
+    if (nAnswerStatus > 0 && nPlayers > 1){
+        nFailCounter++;
+        nFailedQ = 1;
 
-    //     do {
-    //         changePlayers(*nTurnTracker, nPlayers, strFirst, strSecond, strThird, *nFirstScore, *nSecondScore, *nThirdScore, strActivePlayer, *nActiveScore);
-    //         printf("What is your answer to the question? ");
-    //         scanf(" %1c", &cRebound);
-    //         while (getchar() != '\n');
+        do {
+            changePlayers(*nTurnTracker, nPlayers, strFirst, strSecond, strThird, *nFirstScore, *nSecondScore, *nThirdScore, strActivePlayer, *nActiveScore);
+            printf("What is your answer to the question? ");
+            scanf(" %1c", &cRebound);
+            while (getchar() != '\n');
 
-    //         if (cRebound == Cat1Ans1){
-    //             printf("Correct! You won $%d\n", *CatP);
-    //             *nActiveScore += *CatP;
-    //             nFailedQ = 0;
+            if (cRebound == Cat1Ans1){
+                printf("Correct! You won $%d\n", *CatP);
+                *nActiveScore += *CatP;
+                nFailedQ = 0;
 
-    //             printf("Press Any Key to Continue\n");  
-    //                 getch();
+                printf("Press Any Key to Continue\n");  
+                    getch();
 
-    //                 clearTerminal();
-    //         } else {
-    //             printf("Sorry but that answer is incorrect. You lost $%d\n\n", *CatP);
-    //             *nActiveScore -= *CatP;
-    //         }
+                    clearTerminal();
+            } else {
+                printf("Sorry but that answer is incorrect. You lost $%d\n\n", *CatP);
+                *nActiveScore -= *CatP;
+            }
 
-    //         nFailCounter += 1;
+            nFailCounter += 1;
 
-    //         if (nFailCounter == nPlayers && cRebound != CatAns){
-    //             printf("Nobody got the correct answer.\n");
-    //             nFailedQ = 0;
+            if (nFailCounter == nPlayers && cRebound != CatAns){
+                printf("Nobody got the correct answer.\n");
+                nFailedQ = 0;
 
-    //             printf("Press Any Key to Continue\n");  
-    //                 getch();
+                printf("Press Any Key to Continue\n");  
+                    getch();
 
-    //                 clearTerminal();
-    //         }
+                    clearTerminal();
+            }
             
-    //     } while (nFailedQ);
-    // }
+        } while (nFailedQ);
+    }
 
-    // *CatP = 0;
+    *CatP = 0;
 
-    // if (nPlayers == 1 && nAnswerStatus > 0){
-    //             printf("Press Any Key to Continue\n");  
-    //                 getch();
+    if (nPlayers == 1 && nAnswerStatus > 0){
+                printf("Press Any Key to Continue\n");  
+                    getch();
 
-    //                 clearTerminal();
-    // }
+                    clearTerminal();
+    }
 
 }
