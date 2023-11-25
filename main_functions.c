@@ -1,41 +1,4 @@
 /*
-	Description: 
-	Precondition: A valid category was chosen
-	@ param p# - the prizes for each item
-	@return number of the question
-*/
-int CheckAnswer(char* CatQ, char* CatCh, char CatAns, int* nActiveScore, int* CatP, char* strActivePlayer, int* CatProgress){
-    printf("\n%s \n%s \n%c \n%d \n%d \n%s \n%d\n", CatQ, CatCh, CatAns, nActiveScore, CatP, strActivePlayer, CatProgress);
-
-    char cAnswerChoice;
-
-    printf("Your question is: %s\n", CatQ);
-    printf("Your choices are (%c):\n %s\n", CatAns, CatCh);
-
-    printf("What is your choice: ");
-    scanf(" %1c", &cAnswerChoice);
-    while (getchar() != '\n');
-
-    if (cAnswerChoice == CatAns){
-        printf("Congrats, %s! You won $%d \n", strActivePlayer, *CatP);
-        *nActiveScore += *CatP;
-        *CatP = 0;
-        *CatProgress -= 1;
-
-        printf("Press Any Key to Continue\n");  
-        getch();
-
-        clearTerminal();
-
-        return 0;
-    } else {
-        printf("Sorry, %s, that is the wrong answer.\n You lost $%d\n", strActivePlayer, *CatP);
-        *nActiveScore -= *CatP;
-        return *CatP;
-    }
-}
-
-/*
 	Description: Checks to see if a question choice is available
 	Precondition: A valid category was chosen
 	@ param p# - the prizes for each item
