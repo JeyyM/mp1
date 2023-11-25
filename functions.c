@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <time.h> // to use time rand
+#include <conio.h> // to use getch
 
 /*
 	Description: Clears the terminal
@@ -277,6 +279,8 @@ while (nChoiceLoop2) {
         printf("Invalid choice. Please pick from: [A, B, C, D, E]\n");
     }
 }
+
+return 1;
 }
 
 /*

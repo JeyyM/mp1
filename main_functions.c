@@ -47,13 +47,8 @@ void PickChoice(
     int nFailCounter = 0;
 
     char cCategChoice;
-    char cQuestionChoice;
-
-    int nAnswerStatus;
 
     int nValidQ;
-    int nFailedQ;
-    char cRebound;
 
         printf("It is currently %s's turn\n Your score is: %d\n", strActivePlayer, *nActiveScore);
         printf("Select which category you want to answer: \n [A] %s\n [B] %s\n [C] %s\n [D] %s\n [E] Exit Game\n", Title1, Title2, Title3, Title4);

@@ -85,21 +85,21 @@ void PlayGame(int nLength1, int* nLength2, int* nPlayersHold, int* nTurnTrackerH
 
     if (nPlayers >= 1){
         printf("What is Player 1's name (Max of 15 characters long and no spaces): ");
-        scanf("%15s", &strPlayer1Name);
+        scanf("%15s", strPlayer1Name);
         while (getchar() != '\n');
         nFirstScore = 1;
     }
 
     if (nPlayers >= 2){
         printf("What is Player 2's name (Max of 15 characters long and no spaces): ");
-        scanf("%15s", &strPlayer2Name);
+        scanf("%15s", strPlayer2Name);
         while (getchar() != '\n');
         nSecondScore = 2;
     } 
     
     if (nPlayers >= 3){
         printf("What is Player 3's name (Max of 15 characters long and no spaces): ");
-        scanf("%15s", &strPlayer3Name);
+        scanf("%15s", strPlayer3Name);
         while (getchar() != '\n');
         nThirdScore = 3;
     }
@@ -259,7 +259,8 @@ void PlayGame(int nLength1, int* nLength2, int* nPlayersHold, int* nTurnTrackerH
 
 void PlayGame2(int* nLength2, int nPlayersHold, int nTurnTrackerHold, 
               char* strFirstHold, char* strSecondHold, char* strThirdHold, char* strActivePlayerHold, 
-              int nFirstScoreHold, int nSecondScoreHold, int nThirdScoreHold, int nActiveScoreHold, int nDoubleMode, int* nFinal){
+              int nFirstScoreHold, int nSecondScoreHold, int nThirdScoreHold, int nActiveScoreHold, int nDoubleMode, int* nFinal,
+              int* nFinaleScore1, int* nFinaleScore2, int* nFinaleScore3){
     int nPlayers = nPlayersHold;
     int nTurnTracker = nTurnTrackerHold;
 
@@ -444,6 +445,10 @@ void PlayGame2(int* nLength2, int nPlayersHold, int nTurnTrackerHold,
     printf("Press Any Key to Continue\n");  
     getch();
 
+    *nFinaleScore1 = nFirstScore;
+    *nFinaleScore2 = nSecondScore;
+    *nFinaleScore3 = nThirdScore;
+
     clearTerminal();
     
 }
@@ -458,6 +463,36 @@ int main ()
     int nLengthValid2;
     int nDoubleMode;
     int nDoubleModeInput;
+
+    int nFinaleScore1;
+    int nFinaleScore2;
+    int nFinaleScore3;
+
+    int nWager1;
+    int nWager2;
+    int nWager3;
+
+    int nWagerNum1;
+    int nWagerNum2;
+    int nWagerNum3;
+
+    char strWagerAns1[100];
+    char strWagerAns2[100];
+    char strWagerAns3[100];
+
+    char F1Q[100];
+    char F1A[100];
+    char F2Q[100];
+    char F2A[100];
+    char F3Q[100];
+    char F3A[100];
+
+    int nWager1Choice;
+    int nWager1Verify;
+    int nWager2Choice;
+    int nWager2Verify;
+    int nWager3Choice;
+    int nWager3Verify;
 
     int nFinal = 0;
 
@@ -528,11 +563,162 @@ int main ()
                 printDouble();
 
             PlayGame2(&nLength2, nPlayersHold, nTurnTrackerHold, strFirstHold, strSecondHold, strThirdHold, strActivePlayerHold, 
-                      nFirstScoreHold, nSecondScoreHold, nThirdScoreHold, nActiveScoreHold, nDoubleMode, &nFinal);
+                      nFirstScoreHold, nSecondScoreHold, nThirdScoreHold, nActiveScoreHold, nDoubleMode, &nFinal,
+                      &nFinaleScore1, &nFinaleScore2, &nFinaleScore3 );
             }
 
             if (nFinal){
-                printf("FINAL JEOPARDY START\n");
+                printFinal();
+                printf("\nNow starts Final Jeopardy! Bet up to your maximum points.\nWin or Lose how much you gamble.\nAnswers are singular, one-word, and CAPITALIZED.\n");
+
+                printf("Press Any Key to Continue\n");  
+                getch();
+
+                clearTerminal();
+
+                nWagerNum1 = randMinMax(1, 5);
+                nWagerNum2 = randMinMax(1, 5);
+                nWagerNum3 = randMinMax(1, 5);
+
+                do {
+                    nWagerNum2 = randMinMax(1, 5);
+                } while (nWagerNum1 == nWagerNum2);
+
+                do {
+                    nWagerNum3 = randMinMax(1, 5);
+                } while (nWagerNum3 == nWagerNum1 || nWagerNum3 == nWagerNum2);
+
+                GetFinal(nWagerNum1, F1Q, F1A);
+                GetFinal(nWagerNum2, F2Q, F2A);
+                GetFinal(nWagerNum3, F3Q, F3A);
+
+            if (nFinaleScore1 > 0){
+                printf("%s can wager from 0 up to %d: ", strFirstHold, nFinaleScore1);
+
+                do {
+                    nWager1Verify = scanf("%d", &nWager1Choice);
+
+                    while (getchar() != '\n');
+
+                    if (nWager1Verify != 1 || nWager1Choice < 0 || nWager1Choice > nFinaleScore1) {
+                        printf("Invalid input. Please enter a number between 0 and %d:", nFinaleScore1);
+                    }
+                } while (nWager1Verify != 1 || nWager1Choice < 0 || nWager1Choice > nFinaleScore1);
+
+                printf("Your question is:\n %s\n", F1Q);
+                printf("Type your answer (%s): ", F1A);
+
+                scanf("%s", strWagerAns1);
+                while (getchar() != '\n');
+
+                if (strcmp(strWagerAns1, F1A) == 0){
+                    printf("Correct! You won $%d\n", nWager1Choice);
+                    nFinaleScore1 += nWager1Choice;
+                } else {
+                    printf("That is incorrect, you lost $%d\n", nWager1Choice);
+                    nFinaleScore1 -= nWager1Choice;
+                }
+                
+            } else {
+                printf("Sorry %s, you don't have enough points to wager.\n", strFirstHold);
+            }
+
+            printf("Press Any Key to Continue\n");  
+            getch();
+
+            clearTerminal();
+
+            if (nPlayersHold >= 2){
+            if (nFinaleScore2 > 0){
+                printf("%s can wager from 0 up to %d: ", strSecondHold, nFinaleScore2);
+
+                do {
+                    nWager2Verify = scanf("%d", &nWager2Choice);
+
+                    while (getchar() != '\n');
+
+                    if (nWager2Verify != 1 || nWager2Choice < 0 || nWager2Choice > nFinaleScore2) {
+                        printf("Invalid input. Please enter a number between 0 and %d:", nFinaleScore2);
+                    }
+                } while (nWager2Verify != 1 || nWager2Choice < 0 || nWager2Choice > nFinaleScore2);
+
+                printf("Your question is:\n %s\n", F2Q);
+                printf("Type your answer (%s): ", F2A);
+
+                scanf("%s", strWagerAns2);
+                while (getchar() != '\n');
+
+                if (strcmp(strWagerAns2, F2A) == 0){
+                    printf("Correct! You won $%d\n", nWager2Choice);
+                    nFinaleScore2 += nWager2Choice;
+                } else {
+                    printf("That is incorrect, you lost $%d\n", nWager2Choice);
+                    nFinaleScore2 -= nWager2Choice;
+                }
+                
+            } else {
+                printf("Sorry %s, you don't have enough points to wager.\n", strSecondHold);
+            }
+
+            printf("Press Any Key to Continue\n");  
+            getch();
+
+            clearTerminal();
+            }
+
+            if (nPlayersHold >= 3){
+            if (nFinaleScore3 > 0){
+                printf("%s can wager from 0 up to %d: ", strThirdHold, nFinaleScore3);
+
+                do {
+                    nWager3Verify = scanf("%d", &nWager3Choice);
+
+                    while (getchar() != '\n');
+
+                    if (nWager3Verify != 1 || nWager3Choice < 0 || nWager3Choice > nFinaleScore3) {
+                        printf("Invalid input. Please enter a number between 0 and %d:", nFinaleScore3);
+                    }
+                } while (nWager3Verify != 1 || nWager3Choice < 0 || nWager3Choice > nFinaleScore3);
+
+                printf("Your question is:\n %s\n", F3Q);
+                printf("Type your answer (%s): ", F3A);
+
+                scanf("%s", strWagerAns3);
+                while (getchar() != '\n');
+
+                if (strcmp(strWagerAns3, F3A) == 0){
+                    printf("Correct! You won $%d\n", nWager3Choice);
+                    nFinaleScore3 += nWager3Choice;
+                } else {
+                    printf("That is incorrect, you lost $%d\n", nWager3Choice);
+                    nFinaleScore3 -= nWager3Choice;
+                }
+                
+            } else {
+                printf("Sorry %s, you don't have enough points to wager.\n", strThirdHold);
+            }
+
+            printf("Press Any Key to Continue\n");  
+            getch();
+
+            clearTerminal();
+            }
+
+            printf("END OF GAME STANDINGS\n");
+            printf("%s: %d\n", strFirstHold, nFinaleScore1);
+
+            if (nPlayersHold >= 2){
+            printf("%s: %d\n", strSecondHold, nFinaleScore2);
+            }
+
+            if (nPlayersHold >=3){
+            printf("%s: %d\n", strThirdHold, nFinaleScore3);
+            }
+
+            printf("Press Any Key to Continue\n");  
+            getch();
+
+            clearTerminal();
             }
             
         } break;

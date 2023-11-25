@@ -445,3 +445,47 @@ void getContent6(int TitleNum, int* CatP1, int* CatP2, int* CatP3, int* CatP4, i
         } break;
     }
 }
+
+char FQ1[] = "What is the name of the biggest rodent?";
+char FA1[] = "CAPYBARA";
+
+char FQ2[] = "What does O mean in the periodic table?";
+char FA2[] = "OXYGEN";
+
+char FQ3[] = "What is the hardest material?";
+char FA3[] = "DIAMOND";
+
+char FQ4[] = "What is the Roman name of the Moon?";
+char FA4[] = "LUNA";
+
+char FQ5[] = "What is the name of an extinct flightless bird?";
+char FA5[] = "DODO";
+
+void GetFinal(int FNum, char* FQ, char* FA){
+    switch (FNum){
+        case 1:{
+            strcpy(FQ, FQ1);
+            strcpy(FA, FA1);
+        } break;
+
+        case 2:{
+            strcpy(FQ, FQ2);
+            strcpy(FA, FA2);
+        } break;
+
+        case 3:{
+            strcpy(FQ, FQ3);
+            strcpy(FA, FA3);
+        } break;
+
+        case 4:{
+            strcpy(FQ, FQ4);
+            strcpy(FA, FA4);
+        } break;
+
+        case 5:{
+            strcpy(FQ, FQ5);
+            strcpy(FA, FA5);
+        } break;
+    }
+}

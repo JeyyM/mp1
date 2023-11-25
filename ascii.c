@@ -55,6 +55,25 @@ void printDouble()
     printf("                                                       \n");
 }
 
+void printFinal() {
+    printf("                  ### ###    ####   ###  ##    ##     ####     \n");
+    printf("                   ##  ##     ##      ## ##     ##     ##      \n");
+    printf("                   ##         ##     # ## #   ## ##    ##      \n");
+    printf("                   ## ##      ##     ## ##    ##  ##   ##      \n");
+    printf("                   ##         ##     ##  ##   ## ###   ##      \n");
+    printf("                   ##         ##     ##  ##   ##  ##   ##  ##  \n");
+    printf("                  ####       ####   ###  ##  ###  ##  ### ###  \n");
+    printf("                                                               \n");
+    printf("   ####  ### ###   ## ##   ### ##     ##     ### ##   ### ##   ##  ##   \n");
+    printf("    ##    ##  ##  ##   ##   ##  ##     ##     ##  ##   ##  ##  ##  ##   \n");
+    printf("    ##    ##      ##   ##   ##  ##   ## ##    ##  ##   ##  ##  ##  ##   \n");
+    printf("    ##    ## ##   ##   ##   ##  ##   ##  ##   ## ##    ##  ##   ## ##   \n");
+    printf("##  ##    ##      ##   ##   ## ##    ## ###   ## ##    ##  ##    ##     \n");
+    printf("##  ##    ##  ##  ##   ##   ##       ##  ##   ##  ##   ##  ##    ##     \n");
+    printf(" ## #    ### ###   ## ##   ####     ###  ##  #### ##  ### ##     ##     \n");
+    printf("                                                                       \n");
+}
+
 /*
 	Description: These printers are for making the jeopardy table
 	Precondition: none
