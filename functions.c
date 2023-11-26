@@ -109,8 +109,11 @@ char startMenu()
 
 /*
 	Description: Assigns the order of each player name on the strPlacements
-	Precondition: The number of players are set and 1-3 player names
-	@ param nPlayers - number of players. strPlayer#Names - the names of the players, strPlacement - the ordering names
+	Precondition: The number of players are set and 1-3 player names are given
+	@ param 
+    nPlayers - number of players
+    strPlayer#Names - the names of the players
+    strTh - the ordering names
 	@return none
 */
 void orderPlayers(int* nPlayers, char* strPlayer1Name, char* strPlayer2Name, char* strPlayer3Name, char* strFirst, char* strSecond, char* strThird) {
@@ -186,7 +189,9 @@ void orderPlayers(int* nPlayers, char* strPlayer1Name, char* strPlayer2Name, cha
 /*
 	Description: Gets a random number between a minimum and maximum
 	Precondition: none
-	@ param min - lowest floor, max - the highest possible
+	@ param 
+    min - lowest floor
+    max - the highest possible
 	@return randomized number
 */
 int randMinMax(int min, int max) 
@@ -197,8 +202,11 @@ int randMinMax(int min, int max)
 /*
 	Description: Sets up the current player
 	Precondition: All of the player names have been set
-	@ param nTurnTracker - keeps track of which player's turn it is, Player#Name - the names of the 1-3 players, Player#Score - the player scores, 
-                           strActivePlayer and nActiveScore are the containers that hold the current player's data
+	@ param 
+    nTurnTracker - keeps track of which player's turn it is
+    Player#Name - the names of the 1-3 players
+    Player#Score - the player scores 
+    strActivePlayer and nActiveScore - the containers that hold the current player's data
 	@return none
 */
 void setPlayer(int nTurnTracker, char* Player1Name, char* Player2Name, char* Player3Name, 
@@ -285,7 +293,7 @@ return 1;
 
 /*
 	Description: Changes the active player when a wrong answer is chosen
-	Precondition: None
+	Precondition: Players have been set along with the player order
 	@ param 
     nTurnTracker - Tracks which player is active 
     strTh - the names of the players

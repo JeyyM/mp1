@@ -1,8 +1,23 @@
 /*
 	Description: Checks to see if a question choice is available
 	Precondition: A valid category was chosen
-	@ param p# - the prizes for each item
-	@return number of the question
+	@ param
+    Title# - Question Titles
+    Cat#Q# - Category Questions
+    Cat#Ch# - Category Question's Choices
+    Cat#Ans# - Category Question's Answers
+    Cat#Ans# - Category Question's Prizes
+    nTurnTracker - Tracks current player
+    nPlayers - Number of players
+    strTh = The players' names
+    nThScore = The players' scores
+    strActivePlayer = Current player name
+    nActiveScore = Current player score
+    CatXProgress = Number of questions left for a category
+    nJeopardyProgress = Number of turns left for the round
+    nLength2 = Double round length
+    nDoubleMode = Double round penalty type
+	@return none
 */
 
 void PickChoice(

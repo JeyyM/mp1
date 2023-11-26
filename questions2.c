@@ -198,7 +198,10 @@ int  zC7P5 = 2000;
 /*
 	Description: Assigns the title and questions for each category based on the number they roll
 	Precondition: Randomized numbers have been set
-	@ param TitleNum - the random number, strTitle - the tite container, CatQ# - the category's questions
+	@ param 
+    TitleNum - the category random number
+    strTitle - the title container
+    CatQ# - the category's questions
 	@return none
 */
 
@@ -273,7 +276,9 @@ void getContent4(int TitleNum, char* strTitle, char* CatQ1, char* CatQ2, char* C
 /*
 	Description: Assigns the choices and answers for each item in the category based on the number they roll
 	Precondition: Randomized numbers have been set
-	@ param TitleNum - the random number, CatCh# - the choices for each question, CatAns# - the answers for each question
+	@ param TitleNum - the category random number
+    CatCh# - the choices for each question
+    CatAns# - the answers for each question
 	@return none
 */
 void getContent5(int TitleNum, char* CatCh1, char* CatCh2, char* CatCh3, char* CatCh4, char* CatCh5, char* CatAns1, char* CatAns2, char* CatAns3, char* CatAns4, char* CatAns5)
@@ -382,7 +387,9 @@ void getContent5(int TitleNum, char* CatCh1, char* CatCh2, char* CatCh3, char* C
 /*
 	Description: Assigns the prize for each question
 	Precondition: Randomized numbers have been set
-	@ param TitleNum - the random number, CatP1 - the prize for each item
+	@ param 
+    TitleNum - the random number
+    CatP# - the prize for each item
 	@return none
 */
 void getContent6(int TitleNum, int* CatP1, int* CatP2, int* CatP3, int* CatP4, int* CatP5)
@@ -461,6 +468,15 @@ char FA4[] = "LUNA";
 char FQ5[] = "What is the name of an extinct flightless bird?";
 char FA5[] = "DODO";
 
+/*
+	Description: Picks final jeopardy question and details
+	Precondition: Final Jeopardy is reached
+	@ param 
+    FNum - Chosen random number
+    FQ - Container to get final question
+    FA - Container to get final answer
+	@return none
+*/
 void GetFinal(int FNum, char* FQ, char* FA){
     switch (FNum){
         case 1:{

@@ -30,7 +30,7 @@ void printJeopardy()
 }
 
 /*
-	Description: Prints the double round
+	Description: Prints the Double Round
 	Precondition: none
 	@ param none
 	@return none
@@ -55,6 +55,12 @@ void printDouble()
     printf("                                                       \n");
 }
 
+/*
+	Description: Prints the Final Jeopardy
+	Precondition: none
+	@ param none
+	@return none
+*/
 void printFinal() {
     printf("                  ### ###    ####   ###  ##    ##     ####     \n");
     printf("                   ##  ##     ##      ## ##     ##     ##      \n");
@@ -75,7 +81,7 @@ void printFinal() {
 }
 
 /*
-	Description: These printers are for making the jeopardy table
+	Description: These prints are for making the jeopardy table
 	Precondition: none
 	@ param the row#x are the price values
 	@return none

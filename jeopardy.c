@@ -17,10 +17,16 @@
 /*
 	Description: Starts the game if the user picks 1
 	Precondition: none
-	@ param none
+	@ param 
+    nLength1 and nLength2 - Set the number of rounds for normal and double round
+    nPlayersHold - Will be modified to get the number of players after Jeopardy round
+    nTurnTrackerHold - Will be modified to get the current player after Jeopardy round
+    strThHold and strActivePlayerHold - Will be modified to get the player names after Jeopardy round
+    nThScoreHold and nActiveScoreHold - Will be modified to get the player scores after Jeopardy round
+    nDoubleMode - Sets the Double round penalty
+
 	@return none
 */
-
 void PlayGame(int nLength1, int* nLength2, int* nPlayersHold, int* nTurnTrackerHold, 
               char* strFirstHold, char* strSecondHold, char* strThirdHold, char* strActivePlayerHold, 
               int* nFirstScoreHold, int* nSecondScoreHold, int* nThirdScoreHold, int* nActiveScoreHold, int nDoubleMode){
@@ -467,10 +473,6 @@ int main ()
     int nFinaleScore1;
     int nFinaleScore2;
     int nFinaleScore3;
-
-    int nWager1;
-    int nWager2;
-    int nWager3;
 
     int nWagerNum1;
     int nWagerNum2;
