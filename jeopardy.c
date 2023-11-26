@@ -1,3 +1,13 @@
+/*
+Description: Machine Project for Term 1 2023-2024, Jeopardy Game
+Programmed By: Miranda, Juan Miguel, S22A
+Last Modified: 11/26/2023
+Version: 1.0
+Acknowledgements: Some libraries such <string.h> <time.h> were used to gain certain functionalities.
+                  Some Googling was done when problems occured.
+                  https://ascii-generator.site/ was used to generate ascii images.
+*/
+
 #include <stdio.h>
 #include <stdlib.h> // gets functions like randomization, exit, etc.
 #include <string.h> // allows for operations with strings like strcpy()
@@ -15,7 +25,7 @@
 */
 
 /*
-	Description: Starts the game if the user picks 1
+	Description: Starts the Jeopardy round
 	Precondition: none
 	@ param 
     nLength1 and nLength2 - Set the number of rounds for normal and double round
@@ -263,6 +273,20 @@ void PlayGame(int nLength1, int* nLength2, int* nPlayersHold, int* nTurnTrackerH
     
 }
 
+/*
+	Description: Starts the Double round
+	Precondition: none
+	@ param 
+    nLength2 - Set the number of rounds for double round
+    nPlayersHold - Will be modified to get the number of players after Jeopardy round
+    nTurnTrackerHold - Will be modified to get the current player after Jeopardy round
+    strThHold and strActivePlayerHold - Will be modified to get the player names after Jeopardy round
+    nThScoreHold and nActiveScoreHold - Will be modified to get the player scores after Jeopardy round
+    nDoubleMode - Sets the Double round penalty
+    nFinal - The status to show if Final Jeopardy will occur
+    nFinaleScore# - The final scores of the players before Final Jeopardy
+	@return none
+*/
 void PlayGame2(int* nLength2, int nPlayersHold, int nTurnTrackerHold, 
               char* strFirstHold, char* strSecondHold, char* strThirdHold, char* strActivePlayerHold, 
               int nFirstScoreHold, int nSecondScoreHold, int nThirdScoreHold, int nActiveScoreHold, int nDoubleMode, int* nFinal,
@@ -773,3 +797,12 @@ int main ()
 	return 0;
 }
 
+/*
+This is to certify that this project is my own work, based on my personal efforts in studying and applying the concepts
+learned. I have consructed the functions and their respective algorithms and corresponding code all by myself. The 
+program was run, tested, and debugged by my own efforts. I further certify that I have not copied in part or whole 
+or otherwise plagiarized the work of other students and/or persons.
+
+Miranda, Juan Miguel
+DLSU ID: 12307513
+*/
