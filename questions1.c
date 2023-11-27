@@ -145,7 +145,7 @@ int  C5P5 = 1000;
 
 char C6[] = "Structures of Society";
 
-char C6Q1[] = "What type of building typically houses artworks and sculptures?";
+char C6Q1[] = "What type of building ty ally houses artworks and sculptures?";
 char C6C1[] = "A) Museum\nB) Library\nC) Hospital\nD) School\n";
 char C6A1 = 'A';
 int  C6P1 = 200;
