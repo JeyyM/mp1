@@ -24,8 +24,9 @@ void ClearTerminal()
 */
 int GetPlayers() {
     char strPlayerCount[2];
+    int nValidCount = 1;
 
-    while (1) {
+    while (nValidCount) {
         printf("How many players (1 - 3)? \n");
 
         printf("Select Option: ");
@@ -38,14 +39,17 @@ int GetPlayers() {
         switch (strPlayerCount[0]) {
             case '1': {
                 ClearTerminal();
+                nValidCount = 0;
                 return 1;
             }
             case '2': {
                 return 2;
+                nValidCount = 0;
                 ClearTerminal();
             }
             case '3': {
                 ClearTerminal();
+                nValidCount = 0;
                 return 3;
             }
             default: {
@@ -66,12 +70,13 @@ int GetPlayers() {
 char StartMenu()
 {
 	char strStartStatus[2]; // char with [n] means the length of the input which becomes a string, 2 is put because I only want 1 digit for item [0] and the other 2 extra is for the \0 which ends the string
-	
+	int nStartValid = 1;
+
 	PrintJeopardy();
 	
 	printf("Welcome to Jeopardy!\n");
 
-    while (1) // while (1) makes an infinite loop until you do something to make it exit
+    while (nStartValid)
 	{
         printf("[1] Start Game \n");
         printf("[2] How to Play \n");
@@ -84,23 +89,25 @@ char StartMenu()
 		 {		 	
             case '1': {
                 ClearTerminal();
+                nStartValid = 0;
                 return strStartStatus[0];
                 break;
             }
             case '2': {
                 ClearTerminal();
+                nStartValid = 0;
                 return strStartStatus[0];
                 break;
             }
             case '3': {
                 ClearTerminal();
+                nStartValid = 0;
                 return strStartStatus[0];
                 break;
             }
             default: {
                 printf("Invalid Option. Please type 1, 2, or 3.\n");
             }
-            // no break to make the while (1) work 
         }
     }
     

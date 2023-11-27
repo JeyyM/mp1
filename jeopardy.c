@@ -485,7 +485,8 @@ void PlayGame2(int* nLength2, int nPlayersHold, int nTurnTrackerHold,
 
 int main ()
 {
-    while (1){
+    int nGame = 1;
+    while (nGame){
         char cMode;
         int nLength1;
         int nLengthValid1;
@@ -789,6 +790,9 @@ int main ()
         } break;
         case '3': 
         { 
+            nGame = 0;
+            printf("Thank you for playing!\n");  
+            getch();
             exit(0);
         } break;
     }
