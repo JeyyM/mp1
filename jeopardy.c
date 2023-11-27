@@ -120,21 +120,21 @@ void PlayGame(int nLength1, int* nLength2, int* nPlayersHold, int* nTurnTrackerH
         printf("What is Player 1's name (Max of 15 characters long and no spaces): ");
         scanf("%15s", strPlayer1Name);
         while (getchar() != '\n');
-        nFirstScore = 1;
+        nFirstScore = 0;
     }
 
     if (nPlayers >= 2){
         printf("What is Player 2's name (Max of 15 characters long and no spaces): ");
         scanf("%15s", strPlayer2Name);
         while (getchar() != '\n');
-        nSecondScore = 2;
+        nSecondScore = 0;
     } 
     
     if (nPlayers >= 3){
         printf("What is Player 3's name (Max of 15 characters long and no spaces): ");
         scanf("%15s", strPlayer3Name);
         while (getchar() != '\n');
-        nThirdScore = 3;
+        nThirdScore = 0;
     }
 
     OrderPlayers(&nPlayers, strPlayer1Name, strPlayer2Name, strPlayer3Name, strFirst, strSecond, strThird);
@@ -786,7 +786,34 @@ int main ()
             }
 
             if (nPlayersHold >=3){
-            printf("%s: %d\n", strThirdHold, nFinaleScore3);
+            printf("%s: %d\n\n", strThirdHold, nFinaleScore3);
+            }
+
+            if (nPlayersHold == 1){
+                printf("Your final score is: $%d\n", nFinaleScore1);
+            }
+
+            if (nPlayersHold == 2){
+                if (nFinaleScore1 > nFinaleScore2){
+                    printf("Congratulations %s! You won Jeopardy with a score of $%d!\n", strFirstHold, nFinaleScore1);
+                } else if (nFinaleScore2 > nFinaleScore1){
+                    printf("Congratulations %s! You won Jeopardy with a score of $%d!\n", strSecondHold, nFinaleScore2);
+                } else {
+                    printf("It seems there was a tie!\n");
+                }
+            }
+
+            if (nPlayersHold == 3){
+                if (nFinaleScore1 > nFinaleScore2 && nFinaleScore1 > nFinaleScore3){
+                    printf("Congratulations %s! You won Jeopardy with a score of $%d!\n", strFirstHold, nFinaleScore1);          
+                } else if (nFinaleScore2 > nFinaleScore1 && nFinaleScore2 > nFinaleScore3){
+                    printf("Congratulations %s! You won Jeopardy with a score of $%d!\n", strSecondHold, nFinaleScore2);
+                } else if (nFinaleScore3 > nFinaleScore1 && nFinaleScore3 > nFinaleScore2){
+                    printf("Congratulations %s! You won Jeopardy with a score of $%d!\n", strThirdHold, nFinaleScore3);
+                } else {
+                    printf("It seems there was a tie!\n");
+                }
+
             }
 
             printf("Press Any Key to Continue\n");  
