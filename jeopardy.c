@@ -96,7 +96,7 @@ void PlayGame(int nLength1, int* nLength2, int* nPlayersHold, int* nTurnTrackerH
     //Sets the number of questions that will be answered per round
     nJeopardyProgress = nLength1;
 
-    nPlayers = getPlayers();
+    nPlayers = GetPlayers();
     printf("What are the Player/s' names? \n");
 
     if (nPlayers >= 1){
@@ -120,65 +120,65 @@ void PlayGame(int nLength1, int* nLength2, int* nPlayersHold, int* nTurnTrackerH
         nThirdScore = 3;
     }
 
-    orderPlayers(&nPlayers, strPlayer1Name, strPlayer2Name, strPlayer3Name, strFirst, strSecond, strThird);
+    OrderPlayers(&nPlayers, strPlayer1Name, strPlayer2Name, strPlayer3Name, strFirst, strSecond, strThird);
 
     printf("Press Any Key to Continue\n");  
     getch();
 
-    clearTerminal();
+    ClearTerminal();
 
-    nCateg1 = randMinMax(1, 7);
+    nCateg1 = RandMinMax(1, 7);
 
-    nCateg2 = randMinMax(1, 7);
+    nCateg2 = RandMinMax(1, 7);
     if (nCateg2 == nCateg1) {
         do {
-            nCateg2 = randMinMax(1, 7);
+            nCateg2 = RandMinMax(1, 7);
         } while (nCateg2 == nCateg1);
     } 
 
-    nCateg3 = randMinMax(1, 7);
+    nCateg3 = RandMinMax(1, 7);
     if (nCateg3 == nCateg1 || nCateg3 == nCateg2) {
         do {
-            nCateg3 = randMinMax(1, 7);
+            nCateg3 = RandMinMax(1, 7);
         } while (nCateg3 == nCateg1 || nCateg3 == nCateg2);
     }
 
-    nCateg4 = randMinMax(1, 7);
+    nCateg4 = RandMinMax(1, 7);
     if (nCateg4 == nCateg1 || nCateg4 == nCateg2 || nCateg4 == nCateg3) {
         do {
-            nCateg4 = randMinMax(1, 7);
+            nCateg4 = RandMinMax(1, 7);
         } while (nCateg4 == nCateg1 || nCateg4 == nCateg2 || nCateg4 == nCateg3);
     }
 
-    getContent1(nCateg1, strTitle1, Cat1Q1, Cat1Q2, Cat1Q3, Cat1Q4, Cat1Q5);
-    getContent2(nCateg1, Cat1Ch1, Cat1Ch2, Cat1Ch3, Cat1Ch4, Cat1Ch5, &Cat1Ans1, &Cat1Ans2, &Cat1Ans3, &Cat1Ans4, &Cat1Ans5);
-    getContent3(nCateg1, &Cat1P1, &Cat1P2, &Cat1P3, &Cat1P4, &Cat1P5);
+    GetContent1(nCateg1, strTitle1, Cat1Q1, Cat1Q2, Cat1Q3, Cat1Q4, Cat1Q5);
+    GetContent2(nCateg1, Cat1Ch1, Cat1Ch2, Cat1Ch3, Cat1Ch4, Cat1Ch5, &Cat1Ans1, &Cat1Ans2, &Cat1Ans3, &Cat1Ans4, &Cat1Ans5);
+    GetContent3(nCateg1, &Cat1P1, &Cat1P2, &Cat1P3, &Cat1P4, &Cat1P5);
 
-    getContent1(nCateg2, strTitle2, Cat2Q1, Cat2Q2, Cat2Q3, Cat2Q4, Cat2Q5);
-    getContent2(nCateg2, Cat2Ch1, Cat2Ch2, Cat2Ch3, Cat2Ch4, Cat2Ch5, &Cat2Ans1, &Cat2Ans2, &Cat2Ans3, &Cat2Ans4, &Cat2Ans5);
-    getContent3(nCateg2, &Cat2P1, &Cat2P2, &Cat2P3, &Cat2P4, &Cat2P5);
+    GetContent1(nCateg2, strTitle2, Cat2Q1, Cat2Q2, Cat2Q3, Cat2Q4, Cat2Q5);
+    GetContent2(nCateg2, Cat2Ch1, Cat2Ch2, Cat2Ch3, Cat2Ch4, Cat2Ch5, &Cat2Ans1, &Cat2Ans2, &Cat2Ans3, &Cat2Ans4, &Cat2Ans5);
+    GetContent3(nCateg2, &Cat2P1, &Cat2P2, &Cat2P3, &Cat2P4, &Cat2P5);
 
-    getContent1(nCateg3, strTitle3, Cat3Q1, Cat3Q2, Cat3Q3, Cat3Q4, Cat3Q5);
-    getContent2(nCateg3, Cat3Ch1, Cat3Ch2, Cat3Ch3, Cat3Ch4, Cat3Ch5, &Cat3Ans1, &Cat3Ans2, &Cat3Ans3, &Cat3Ans4, &Cat3Ans5);
-    getContent3(nCateg3, &Cat3P1, &Cat3P2, &Cat3P3, &Cat3P4, &Cat3P5);
+    GetContent1(nCateg3, strTitle3, Cat3Q1, Cat3Q2, Cat3Q3, Cat3Q4, Cat3Q5);
+    GetContent2(nCateg3, Cat3Ch1, Cat3Ch2, Cat3Ch3, Cat3Ch4, Cat3Ch5, &Cat3Ans1, &Cat3Ans2, &Cat3Ans3, &Cat3Ans4, &Cat3Ans5);
+    GetContent3(nCateg3, &Cat3P1, &Cat3P2, &Cat3P3, &Cat3P4, &Cat3P5);
 
-    getContent1(nCateg4, strTitle4, Cat4Q1, Cat4Q2, Cat4Q3, Cat4Q4, Cat4Q5);
-    getContent2(nCateg4, Cat4Ch1, Cat4Ch2, Cat4Ch3, Cat4Ch4, Cat4Ch5, &Cat4Ans1, &Cat4Ans2, &Cat4Ans3, &Cat4Ans4, &Cat4Ans5);
-    getContent3(nCateg4, &Cat4P1, &Cat4P2, &Cat4P3, &Cat4P4, &Cat4P5);
+    GetContent1(nCateg4, strTitle4, Cat4Q1, Cat4Q2, Cat4Q3, Cat4Q4, Cat4Q5);
+    GetContent2(nCateg4, Cat4Ch1, Cat4Ch2, Cat4Ch3, Cat4Ch4, Cat4Ch5, &Cat4Ans1, &Cat4Ans2, &Cat4Ans3, &Cat4Ans4, &Cat4Ans5);
+    GetContent3(nCateg4, &Cat4P1, &Cat4P2, &Cat4P3, &Cat4P4, &Cat4P5);
 
     printf("The chosen categories are: \n%s \n%s \n%s \n%s \n", strTitle1, strTitle2, strTitle3, strTitle4);
 
     printf("\nPress Any Key to Continue\n");  
     getch();
 
-    clearTerminal();
+    ClearTerminal();
 
     printf("It's time for the first round of JEOPARDY!\n");
 
-    setPlayer(nTurnTracker, strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore, strActivePlayer, &nActiveScore);
+    SetPlayer(nTurnTracker, strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore, strActivePlayer, &nActiveScore);
 
     do {
-            printTable(Cat1P1, Cat2P1, Cat3P1, Cat4P1,
+            PrintTable(Cat1P1, Cat2P1, Cat3P1, Cat4P1,
                Cat1P2, Cat2P2, Cat3P2, Cat4P2,
                Cat1P3, Cat2P3, Cat3P3, Cat4P3,
                Cat1P4, Cat2P4, Cat3P4, Cat4P4,
@@ -269,7 +269,7 @@ void PlayGame(int nLength1, int* nLength2, int* nPlayersHold, int* nTurnTrackerH
     printf("Press Any Key to Continue\n");  
     getch();
 
-    clearTerminal();
+    ClearTerminal();
     
 }
 
@@ -341,58 +341,58 @@ void PlayGame2(int* nLength2, int nPlayersHold, int nTurnTrackerHold,
     int CatDProgress = 5;
     int CatEProgress = 5;
 
-    nCateg1 = randMinMax(1, 7);
+    nCateg1 = RandMinMax(1, 7);
 
-    nCateg2 = randMinMax(1, 7);
+    nCateg2 = RandMinMax(1, 7);
     if (nCateg2 == nCateg1) {
         do {
-            nCateg2 = randMinMax(1, 7);
+            nCateg2 = RandMinMax(1, 7);
         } while (nCateg2 == nCateg1);
     } 
 
-    nCateg3 = randMinMax(1, 7);
+    nCateg3 = RandMinMax(1, 7);
     if (nCateg3 == nCateg1 || nCateg3 == nCateg2) {
         do {
-            nCateg3 = randMinMax(1, 7);
+            nCateg3 = RandMinMax(1, 7);
         } while (nCateg3 == nCateg1 || nCateg3 == nCateg2);
     }
 
-    nCateg4 = randMinMax(1, 7);
+    nCateg4 = RandMinMax(1, 7);
     if (nCateg4 == nCateg1 || nCateg4 == nCateg2 || nCateg4 == nCateg3) {
         do {
-            nCateg4 = randMinMax(1, 7);
+            nCateg4 = RandMinMax(1, 7);
         } while (nCateg4 == nCateg1 || nCateg4 == nCateg2 || nCateg4 == nCateg3);
     }
 
-    getContent4(nCateg1, strTitle1, Cat1Q1, Cat1Q2, Cat1Q3, Cat1Q4, Cat1Q5);
-    getContent5(nCateg1, Cat1Ch1, Cat1Ch2, Cat1Ch3, Cat1Ch4, Cat1Ch5, &Cat1Ans1, &Cat1Ans2, &Cat1Ans3, &Cat1Ans4, &Cat1Ans5);
-    getContent6(nCateg1, &Cat1P1, &Cat1P2, &Cat1P3, &Cat1P4, &Cat1P5);
+    GetContent4(nCateg1, strTitle1, Cat1Q1, Cat1Q2, Cat1Q3, Cat1Q4, Cat1Q5);
+    GetContent5(nCateg1, Cat1Ch1, Cat1Ch2, Cat1Ch3, Cat1Ch4, Cat1Ch5, &Cat1Ans1, &Cat1Ans2, &Cat1Ans3, &Cat1Ans4, &Cat1Ans5);
+    GetContent6(nCateg1, &Cat1P1, &Cat1P2, &Cat1P3, &Cat1P4, &Cat1P5);
 
-    getContent4(nCateg2, strTitle2, Cat2Q1, Cat2Q2, Cat2Q3, Cat2Q4, Cat2Q5);
-    getContent5(nCateg2, Cat2Ch1, Cat2Ch2, Cat2Ch3, Cat2Ch4, Cat2Ch5, &Cat2Ans1, &Cat2Ans2, &Cat2Ans3, &Cat2Ans4, &Cat2Ans5);
-    getContent6(nCateg2, &Cat2P1, &Cat2P2, &Cat2P3, &Cat2P4, &Cat2P5);
+    GetContent4(nCateg2, strTitle2, Cat2Q1, Cat2Q2, Cat2Q3, Cat2Q4, Cat2Q5);
+    GetContent5(nCateg2, Cat2Ch1, Cat2Ch2, Cat2Ch3, Cat2Ch4, Cat2Ch5, &Cat2Ans1, &Cat2Ans2, &Cat2Ans3, &Cat2Ans4, &Cat2Ans5);
+    GetContent6(nCateg2, &Cat2P1, &Cat2P2, &Cat2P3, &Cat2P4, &Cat2P5);
 
-    getContent4(nCateg3, strTitle3, Cat3Q1, Cat3Q2, Cat3Q3, Cat3Q4, Cat3Q5);
-    getContent5(nCateg3, Cat3Ch1, Cat3Ch2, Cat3Ch3, Cat3Ch4, Cat3Ch5, &Cat3Ans1, &Cat3Ans2, &Cat3Ans3, &Cat3Ans4, &Cat3Ans5);
-    getContent6(nCateg3, &Cat3P1, &Cat3P2, &Cat3P3, &Cat3P4, &Cat3P5);
+    GetContent4(nCateg3, strTitle3, Cat3Q1, Cat3Q2, Cat3Q3, Cat3Q4, Cat3Q5);
+    GetContent5(nCateg3, Cat3Ch1, Cat3Ch2, Cat3Ch3, Cat3Ch4, Cat3Ch5, &Cat3Ans1, &Cat3Ans2, &Cat3Ans3, &Cat3Ans4, &Cat3Ans5);
+    GetContent6(nCateg3, &Cat3P1, &Cat3P2, &Cat3P3, &Cat3P4, &Cat3P5);
 
-    getContent4(nCateg4, strTitle4, Cat4Q1, Cat4Q2, Cat4Q3, Cat4Q4, Cat4Q5);
-    getContent5(nCateg4, Cat4Ch1, Cat4Ch2, Cat4Ch3, Cat4Ch4, Cat4Ch5, &Cat4Ans1, &Cat4Ans2, &Cat4Ans3, &Cat4Ans4, &Cat4Ans5);
-    getContent6(nCateg4, &Cat4P1, &Cat4P2, &Cat4P3, &Cat4P4, &Cat4P5);
+    GetContent4(nCateg4, strTitle4, Cat4Q1, Cat4Q2, Cat4Q3, Cat4Q4, Cat4Q5);
+    GetContent5(nCateg4, Cat4Ch1, Cat4Ch2, Cat4Ch3, Cat4Ch4, Cat4Ch5, &Cat4Ans1, &Cat4Ans2, &Cat4Ans3, &Cat4Ans4, &Cat4Ans5);
+    GetContent6(nCateg4, &Cat4P1, &Cat4P2, &Cat4P3, &Cat4P4, &Cat4P5);
 
     printf("The chosen categories are: \n%s \n%s \n%s \n%s \n", strTitle1, strTitle2, strTitle3, strTitle4);
 
     printf("\nPress Any Key to Continue\n");  
     getch();
 
-    clearTerminal();
+    ClearTerminal();
 
     printf("It's time for the second round of JEOPARDY! The Double Round\n");
 
-    setPlayer(nTurnTracker, strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore, strActivePlayer, &nActiveScore);
+    SetPlayer(nTurnTracker, strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore, strActivePlayer, &nActiveScore);
 
     do {
-            printTable(Cat1P1, Cat2P1, Cat3P1, Cat4P1,
+            PrintTable(Cat1P1, Cat2P1, Cat3P1, Cat4P1,
                Cat1P2, Cat2P2, Cat3P2, Cat4P2,
                Cat1P3, Cat2P3, Cat3P3, Cat4P3,
                Cat1P4, Cat2P4, Cat3P4, Cat4P4,
@@ -479,50 +479,50 @@ void PlayGame2(int* nLength2, int nPlayersHold, int nTurnTrackerHold,
     *nFinaleScore2 = nSecondScore;
     *nFinaleScore3 = nThirdScore;
 
-    clearTerminal();
+    ClearTerminal();
     
 }
 
 int main ()
 {
     while (1){
-	char cMode;
-    int nLength1;
-    int nLengthValid1;
-    int nLength2;
-    int nLengthValid2;
-    int nDoubleMode;
-    int nDoubleModeInput;
+        char cMode;
+        int nLength1;
+        int nLengthValid1;
+        int nLength2;
+        int nLengthValid2;
+        int nDoubleMode;
+        int nDoubleModeInput;
 
-    int nFinaleScore1;
-    int nFinaleScore2;
-    int nFinaleScore3;
+        int nFinaleScore1;
+        int nFinaleScore2;
+        int nFinaleScore3;
 
-    int nWagerNum1;
-    int nWagerNum2;
-    int nWagerNum3;
+        int nWagerNum1;
+        int nWagerNum2;
+        int nWagerNum3;
 
-    char strWagerAns1[100];
-    char strWagerAns2[100];
-    char strWagerAns3[100];
+        char strWagerAns1[100];
+        char strWagerAns2[100];
+        char strWagerAns3[100];
 
-    char F1Q[100];
-    char F1A[100];
-    char F2Q[100];
-    char F2A[100];
-    char F3Q[100];
-    char F3A[100];
+        char F1Q[100];
+        char F1A[100];
+        char F2Q[100];
+        char F2A[100];
+        char F3Q[100];
+        char F3A[100];
 
-    int nWager1Choice;
-    int nWager1Verify;
-    int nWager2Choice;
-    int nWager2Verify;
-    int nWager3Choice;
-    int nWager3Verify;
+        int nWager1Choice;
+        int nWager1Verify;
+        int nWager2Choice;
+        int nWager2Verify;
+        int nWager3Choice;
+        int nWager3Verify;
 
-    int nFinal = 0;
+        int nFinal = 0;
 
-    cMode = startMenu();
+    cMode = StartMenu();
 
     switch (cMode) {
         case '1':
@@ -586,7 +586,7 @@ int main ()
                      strActivePlayerHold, &nFirstScoreHold, &nSecondScoreHold, &nThirdScoreHold, &nActiveScoreHold, 1);
 
             if (nLength2 > 0){
-                printDouble();
+                PrintDouble();
 
             PlayGame2(&nLength2, nPlayersHold, nTurnTrackerHold, strFirstHold, strSecondHold, strThirdHold, strActivePlayerHold, 
                       nFirstScoreHold, nSecondScoreHold, nThirdScoreHold, nActiveScoreHold, nDoubleMode, &nFinal,
@@ -594,24 +594,24 @@ int main ()
             }
 
             if (nFinal){
-                printFinal();
+                PrintFinal();
                 printf("\nNow starts Final Jeopardy! Bet up to your maximum points.\nWin or Lose how much you gamble.\nAnswers are singular, one-word, and CAPITALIZED.\n");
 
                 printf("Press Any Key to Continue\n");  
                 getch();
 
-                clearTerminal();
+                ClearTerminal();
 
-                nWagerNum1 = randMinMax(1, 5);
-                nWagerNum2 = randMinMax(1, 5);
-                nWagerNum3 = randMinMax(1, 5);
+                nWagerNum1 = RandMinMax(1, 5);
+                nWagerNum2 = RandMinMax(1, 5);
+                nWagerNum3 = RandMinMax(1, 5);
 
                 do {
-                    nWagerNum2 = randMinMax(1, 5);
+                    nWagerNum2 = RandMinMax(1, 5);
                 } while (nWagerNum1 == nWagerNum2);
 
                 do {
-                    nWagerNum3 = randMinMax(1, 5);
+                    nWagerNum3 = RandMinMax(1, 5);
                 } while (nWagerNum3 == nWagerNum1 || nWagerNum3 == nWagerNum2);
 
                 GetFinal(nWagerNum1, F1Q, F1A);
@@ -652,7 +652,7 @@ int main ()
             printf("Press Any Key to Continue\n");  
             getch();
 
-            clearTerminal();
+            ClearTerminal();
 
             if (nPlayersHold >= 2){
             if (nFinaleScore2 > 0){
@@ -689,7 +689,7 @@ int main ()
             printf("Press Any Key to Continue\n");  
             getch();
 
-            clearTerminal();
+            ClearTerminal();
             }
 
             if (nPlayersHold >= 3){
@@ -727,7 +727,7 @@ int main ()
             printf("Press Any Key to Continue\n");  
             getch();
 
-            clearTerminal();
+            ClearTerminal();
             }
 
             printf("END OF GAME STANDINGS\n");
@@ -744,14 +744,14 @@ int main ()
             printf("Press Any Key to Continue\n");  
             getch();
 
-            clearTerminal();
+            ClearTerminal();
             }
             
         } break;
 
         case '2': 
         { 
-            clearTerminal();
+            ClearTerminal();
             printf("\nWelcome to Jeopardy! Here are the rules:\n");
             printf("1. There may be up to 3 players and you will input your names.\n");
             printf("   Then the play order will be randomly chosen.\n");
@@ -783,7 +783,7 @@ int main ()
             printf("Press Any Key to Continue\n");  
             getch();
 
-            clearTerminal();
+            ClearTerminal();
 
 
         } break;

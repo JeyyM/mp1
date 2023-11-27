@@ -208,7 +208,7 @@ int  C7P5 = 1000;
 */
 
 // NOTE: GetContent was split up to not make it too big
-void getContent1(int TitleNum, char* strTitle, char* CatQ1, char* CatQ2, char* CatQ3, char* CatQ4, char* CatQ5) {
+void GetContent1(int TitleNum, char* strTitle, char* CatQ1, char* CatQ2, char* CatQ3, char* CatQ4, char* CatQ5) {
     switch (TitleNum){
         case 1:{
             strcpy(strTitle, C1);
@@ -283,7 +283,7 @@ void getContent1(int TitleNum, char* strTitle, char* CatQ1, char* CatQ2, char* C
     CatAns# - the answers for each question
 	@return none
 */
-void getContent2(int TitleNum, char* CatCh1, char* CatCh2, char* CatCh3, char* CatCh4, char* CatCh5, char* CatAns1, char* CatAns2, char* CatAns3, char* CatAns4, char* CatAns5)
+void GetContent2(int TitleNum, char* CatCh1, char* CatCh2, char* CatCh3, char* CatCh4, char* CatCh5, char* CatAns1, char* CatAns2, char* CatAns3, char* CatAns4, char* CatAns5)
 {
     switch (TitleNum){
         case 1:{
@@ -394,7 +394,7 @@ void getContent2(int TitleNum, char* CatCh1, char* CatCh2, char* CatCh3, char* C
     CatP# - the prize for each item
 	@return none
 */
-void getContent3(int TitleNum, int* CatP1, int* CatP2, int* CatP3, int* CatP4, int* CatP5)
+void GetContent3(int TitleNum, int* CatP1, int* CatP2, int* CatP3, int* CatP4, int* CatP5)
 {
     switch (TitleNum){
         case 1:{

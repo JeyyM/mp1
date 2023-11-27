@@ -10,7 +10,7 @@
 	@ param none
 	@return none
 */
-void clearTerminal() 
+void ClearTerminal() 
 {
     system("cls"); 
 }
@@ -22,7 +22,7 @@ void clearTerminal()
 	@ param none
 	@return the integer version of the chosen char, keeps checking for valid inputs
 */
-int getPlayers() {
+int GetPlayers() {
     char strPlayerCount[2];
 
     while (1) {
@@ -37,15 +37,15 @@ int getPlayers() {
 
         switch (strPlayerCount[0]) {
             case '1': {
-                clearTerminal();
+                ClearTerminal();
                 return 1;
             }
             case '2': {
                 return 2;
-                clearTerminal();
+                ClearTerminal();
             }
             case '3': {
-                clearTerminal();
+                ClearTerminal();
                 return 3;
             }
             default: {
@@ -63,11 +63,11 @@ int getPlayers() {
 	@ param none
 	@return the chosen start status whether start game, instructions, or exit game
 */
-char startMenu()
+char StartMenu()
 {
 	char strStartStatus[2]; // char with [n] means the length of the input which becomes a string, 2 is put because I only want 1 digit for item [0] and the other 2 extra is for the \0 which ends the string
 	
-	printJeopardy();
+	PrintJeopardy();
 	
 	printf("Welcome to Jeopardy!\n");
 
@@ -83,17 +83,17 @@ char startMenu()
         switch (strStartStatus[0]) // [0] is there since the \0 is still caught so it stops being a single digit '' char
 		 {		 	
             case '1': {
-                clearTerminal();
+                ClearTerminal();
                 return strStartStatus[0];
                 break;
             }
             case '2': {
-                clearTerminal();
+                ClearTerminal();
                 return strStartStatus[0];
                 break;
             }
             case '3': {
-                clearTerminal();
+                ClearTerminal();
                 return strStartStatus[0];
                 break;
             }
@@ -116,7 +116,7 @@ char startMenu()
     strTh - the ordering names
 	@return none
 */
-void orderPlayers(int* nPlayers, char* strPlayer1Name, char* strPlayer2Name, char* strPlayer3Name, char* strFirst, char* strSecond, char* strThird) {
+void OrderPlayers(int* nPlayers, char* strPlayer1Name, char* strPlayer2Name, char* strPlayer3Name, char* strFirst, char* strSecond, char* strThird) {
     // picks a random number seed based on current time
     srand(time(NULL));
 
@@ -172,7 +172,7 @@ void orderPlayers(int* nPlayers, char* strPlayer1Name, char* strPlayer2Name, cha
         strcpy(strFirst, strPlayer1Name);
     }
 
-    clearTerminal();
+    ClearTerminal();
 
     if (*nPlayers >= 1) {
         printf("The Play Order Will Be: \n");
@@ -194,7 +194,7 @@ void orderPlayers(int* nPlayers, char* strPlayer1Name, char* strPlayer2Name, cha
     max - the highest possible
 	@return randomized number
 */
-int randMinMax(int min, int max) 
+int RandMinMax(int min, int max) 
 {
     return min + rand() % (max - min + 1);
 }
@@ -209,7 +209,7 @@ int randMinMax(int min, int max)
     strActivePlayer and nActiveScore - the containers that hold the current player's data
 	@return none
 */
-void setPlayer(int nTurnTracker, char* Player1Name, char* Player2Name, char* Player3Name, 
+void SetPlayer(int nTurnTracker, char* Player1Name, char* Player2Name, char* Player3Name, 
                int Player1Score, int Player2Score, int Player3Score, 
                char* strActivePlayer, int* nActiveScore){
 
@@ -301,7 +301,7 @@ return 1;
     strActivePlayer and nActiveScore - active player name and score
 	@return none
 */
-void changePlayers(int *nTurnTracker, int nPlayers,
+void ChangePlayers(int *nTurnTracker, int nPlayers,
                    char* strFirst, char* strSecond, char* strThird,
                    int* nFirstScore, int* nSecondScore, int* nThirdScore,
                    char* strActivePlayer, int* nActiveScore){
@@ -373,7 +373,7 @@ int CheckAnswer(char* CatQ, char* CatCh, char CatAns, int* nActiveScore, int* Ca
         printf("Press Any Key to Continue\n");  
         getch();
 
-        clearTerminal();
+        ClearTerminal();
 
         return 0;
     } else {
@@ -401,9 +401,7 @@ int CheckAnswer(char* CatQ, char* CatCh, char CatAns, int* nActiveScore, int* Ca
 */
 
 void PickAnswer (char* CatQ, char* CatCh, char CatAns, int* CatP,
-
                 int* nTurnTracker, int nPlayers, int nFailCounter,
-
                 char* strFirst, char* strSecond, char* strThird,
                 int* nFirstScore, int* nSecondScore, int* nThirdScore,
                 char* strActivePlayer, int* nActiveScore, int nDoubleMode){
@@ -417,7 +415,7 @@ void PickAnswer (char* CatQ, char* CatCh, char CatAns, int* CatP,
         nFailedQ = 1;
 
         do {
-            changePlayers(nTurnTracker, nPlayers, strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore, strActivePlayer, nActiveScore);
+            ChangePlayers(nTurnTracker, nPlayers, strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore, strActivePlayer, nActiveScore);
             printf("What is your answer to the question? ");
             scanf(" %1c", &cRebound);
             while (getchar() != '\n');
@@ -430,7 +428,7 @@ void PickAnswer (char* CatQ, char* CatCh, char CatAns, int* CatP,
                 printf("Press Any Key to Continue\n");  
                     getch();
 
-                    clearTerminal();
+                    ClearTerminal();
             } else {
                 if (nDoubleMode){
                     printf("Sorry, %s, that is the wrong answer.\n You lost $%d\n", strActivePlayer, *CatP);
@@ -446,12 +444,12 @@ void PickAnswer (char* CatQ, char* CatCh, char CatAns, int* CatP,
                 printf("Nobody got the correct answer.\n");
                 nFailedQ = 0;
 
-                changePlayers(nTurnTracker, nPlayers, strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore, strActivePlayer, nActiveScore);
+                ChangePlayers(nTurnTracker, nPlayers, strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore, strActivePlayer, nActiveScore);
 
                 printf("Press Any Key to Continue\n");  
                     getch();
 
-                    clearTerminal();
+                    ClearTerminal();
             }
             
         } while (nFailedQ);
@@ -463,7 +461,7 @@ void PickAnswer (char* CatQ, char* CatCh, char CatAns, int* CatP,
                 printf("Press Any Key to Continue\n");  
                     getch();
 
-                    clearTerminal();
+                    ClearTerminal();
     }
 
 }

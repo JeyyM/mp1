@@ -274,7 +274,7 @@ void PickChoice(
                     printf("The category has been completed. Pick another.\n");
                 }
             } else if (cCategChoice == 'E') {
-                clearTerminal();
+                ClearTerminal();
                 printf("You chose to exit the game.\n");
 
                 *nJeopardyProgress = 0;
