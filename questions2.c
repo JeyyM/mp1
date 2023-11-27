@@ -1,5 +1,8 @@
 #include <string.h>
 
+// same details as questions1.c however, in order to save time, z was put at the beginning to show that
+// its different qnas
+
 char zC1[] = "zCountry Capitals";
 
 char zC1Q1[] = "zWhat is the capital of France?";
@@ -205,7 +208,7 @@ int  zC7P5 = 2000;
 	@return none
 */
 
-// NOTE: GetContent was split up to not make it too big
+// GetContents are changed to 4-6 to be differentiated from 1-3
 void GetContent4(int TitleNum, char* strTitle, char* CatQ1, char* CatQ2, char* CatQ3, char* CatQ4, char* CatQ5) {
     switch (TitleNum){
         case 1:{
@@ -453,6 +456,7 @@ void GetContent6(int TitleNum, int* CatP1, int* CatP2, int* CatP3, int* CatP4, i
     }
 }
 
+// Possible questions and answers for Final Jeopardy
 char FQ1[] = "What is the name of the biggest rodent?";
 char FA1[] = "CAPYBARA";
 

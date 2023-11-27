@@ -1,7 +1,9 @@
 #include <string.h>
 
+// Category names that can be picked
 char C1[] = "Country Capitals";
 
+//Euestions that can be picked
 char C1Q1[] = "What is the capital of France?";
 char C1C1[] = "A) Madrid\nB) Berlin\nC) Rome\nD) Paris\n";
 char C1A1 = 'D';
@@ -208,6 +210,7 @@ int  C7P5 = 1000;
 */
 
 // NOTE: GetContent was split up to not make it too big
+// Each GetContent is for picking up details based on the random number generated
 void GetContent1(int TitleNum, char* strTitle, char* CatQ1, char* CatQ2, char* CatQ3, char* CatQ4, char* CatQ5) {
     switch (TitleNum){
         case 1:{

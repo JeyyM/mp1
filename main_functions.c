@@ -58,13 +58,16 @@ void PickChoice(
                 )
     {
 
+    // for validation of category choic
     int nChoiceLoop1 = 1;
+
+    // tracks how many times a question was failed
     int nFailCounter = 0;
 
     char cCategChoice;
 
     int nValidQ;
-
+    // prints details of active player
         printf("It is currently %s's turn\n Your score is: %d\n", strActivePlayer, *nActiveScore);
         printf("Select which category you want to answer: \n [A] %s\n [B] %s\n [C] %s\n [D] %s\n [E] Exit Game\n", Title1, Title2, Title3, Title4);
 
@@ -78,8 +81,11 @@ void PickChoice(
                     printf("You chose category [A] %s\n", Title1);
 
                     nValidQ = ValidateQuestion(Cat1P1, Cat1P2, Cat1P3, Cat1P4, Cat1P5);
+
+                    // when the progress becomes 0, the category can no longer be chosen
                     *CatAProgress -= 1;
 
+                    // for answering questions
                     switch (nValidQ){
                         case 1:{
                         
@@ -274,9 +280,11 @@ void PickChoice(
                     printf("The category has been completed. Pick another.\n");
                 }
             } else if (cCategChoice == 'E') {
+                // for exiting the game
                 ClearTerminal();
                 printf("You chose to exit the game.\n");
 
+                // sets nLength2 and such to 0 since if you don't it will just move to double round
                 *nJeopardyProgress = 0;
                 *nLength2 = 0;
                 nChoiceLoop1 = 0;

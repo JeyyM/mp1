@@ -41,56 +41,73 @@ void PlayGame(int nLength1, int* nLength2, int* nPlayersHold, int* nTurnTrackerH
               char* strFirstHold, char* strSecondHold, char* strThirdHold, char* strActivePlayerHold, 
               int* nFirstScoreHold, int* nSecondScoreHold, int* nThirdScoreHold, int* nActiveScoreHold, int nDoubleMode){
 
+    // since this is the jeopardy round, setting nDoubleMode to 1 makes it so scores are never reset to 0 here
     nDoubleMode = 1;
+
+    // the number of players
     int nPlayers;
+
+    // the tracker to see which player is currently active (1 to 3)
     int nTurnTracker;
 
+    // random numbers will be set to see which questions it will choose
     int nCateg1, nCateg2, nCateg3, nCateg4;
 
+    // variables to hold player name strings
     char strPlayer1Name[16];
     char strPlayer2Name[16];
     char strPlayer3Name[16];
     char strActivePlayer[16];
 
+    // variables to hold player names after randomization
     char strFirst[16];
     char strSecond[16];
     char strThird[16];
 
+    // titles of categories chosen
     char strTitle1[30] = "", strTitle2[30] = "", strTitle3[30] = "", strTitle4[30] = "";
 
+    // questions of categories chosen
     char Cat1Q1[100], Cat1Q2[100], Cat1Q3[100], Cat1Q4[100], Cat1Q5[100];
     char Cat2Q1[100], Cat2Q2[100], Cat2Q3[100], Cat2Q4[100], Cat2Q5[100];
     char Cat3Q1[100], Cat3Q2[100], Cat3Q3[100], Cat3Q4[100], Cat3Q5[100];
     char Cat4Q1[100], Cat4Q2[100], Cat4Q3[100], Cat4Q4[100], Cat4Q5[100];
 
+    // choices of categories chosen
     char Cat1Ch1[100], Cat1Ch2[100], Cat1Ch3[100], Cat1Ch4[100], Cat1Ch5[100];
     char Cat2Ch1[100], Cat2Ch2[100], Cat2Ch3[100], Cat2Ch4[100], Cat2Ch5[100];
     char Cat3Ch1[100], Cat3Ch2[100], Cat3Ch3[100], Cat3Ch4[100], Cat3Ch5[100];
     char Cat4Ch1[100], Cat4Ch2[100], Cat4Ch3[100], Cat4Ch4[100], Cat4Ch5[100];
 
+    // answers of categories chosen
     char Cat1Ans1, Cat1Ans2, Cat1Ans3, Cat1Ans4, Cat1Ans5; 
     char Cat2Ans1, Cat2Ans2, Cat2Ans3, Cat2Ans4, Cat2Ans5;
     char Cat3Ans1, Cat3Ans2, Cat3Ans3, Cat3Ans4, Cat3Ans5;
     char Cat4Ans1, Cat4Ans2, Cat4Ans3, Cat4Ans4, Cat4Ans5;
 
+    // prizes of categories chosen
     int Cat1P1, Cat1P2, Cat1P3, Cat1P4, Cat1P5;
     int Cat2P1, Cat2P2, Cat2P3, Cat2P4, Cat2P5;
     int Cat3P1, Cat3P2, Cat3P3, Cat3P4, Cat3P5;
     int Cat4P1, Cat4P2, Cat4P3, Cat4P4, Cat4P5;
 
+    // variables that hold players scores
     int nFirstScore;
     int nSecondScore;
     int nThirdScore;
     int nActiveScore;
 
+    // how many turns are left for the round
     int nJeopardyProgress;
 
+    // tracks to see if a category can still be answered or not
     int CatAProgress = 5;
     int CatBProgress = 5;
     int CatCProgress = 5;
     int CatDProgress = 5;
     int CatEProgress = 5;
 
+    // initially sets it to player 1
     nTurnTracker = 1;
 
     //Sets the number of questions that will be answered per round
@@ -127,6 +144,7 @@ void PlayGame(int nLength1, int* nLength2, int* nPlayersHold, int* nTurnTrackerH
 
     ClearTerminal();
 
+    // chooses random numbers for each category, validates to avoid duplicates
     nCateg1 = RandMinMax(1, 7);
 
     nCateg2 = RandMinMax(1, 7);
@@ -150,6 +168,7 @@ void PlayGame(int nLength1, int* nLength2, int* nPlayersHold, int* nTurnTrackerH
         } while (nCateg4 == nCateg1 || nCateg4 == nCateg2 || nCateg4 == nCateg3);
     }
 
+    // gets the content in batches from questions1.c
     GetContent1(nCateg1, strTitle1, Cat1Q1, Cat1Q2, Cat1Q3, Cat1Q4, Cat1Q5);
     GetContent2(nCateg1, Cat1Ch1, Cat1Ch2, Cat1Ch3, Cat1Ch4, Cat1Ch5, &Cat1Ans1, &Cat1Ans2, &Cat1Ans3, &Cat1Ans4, &Cat1Ans5);
     GetContent3(nCateg1, &Cat1P1, &Cat1P2, &Cat1P3, &Cat1P4, &Cat1P5);
@@ -221,6 +240,7 @@ void PlayGame(int nLength1, int* nLength2, int* nPlayersHold, int* nTurnTrackerH
                    nDoubleMode
                    );
 
+                // deducts to reduce number of turns
                nJeopardyProgress -= 1;
 
     } while (nJeopardyProgress > 0);
@@ -246,6 +266,7 @@ void PlayGame(int nLength1, int* nLength2, int* nPlayersHold, int* nTurnTrackerH
 
     printf("CURRENT STANDINGS:\n%s: %d\n", strFirst, nFirstScore);
 
+    // prevents printing of nonexistent players
     if (nPlayers >=2 ){
             printf("%s: %d\n", strSecond, nSecondScore);
     }
@@ -254,6 +275,7 @@ void PlayGame(int nLength1, int* nLength2, int* nPlayersHold, int* nTurnTrackerH
             printf("%s: %d\n", strThird, nThirdScore);
     }
 
+    // sets the hold variables to be able to take them out of the function
     *nPlayersHold = nPlayers;
     *nTurnTrackerHold = nTurnTracker;
     strcpy(strFirstHold, strFirst);
@@ -291,6 +313,8 @@ void PlayGame2(int* nLength2, int nPlayersHold, int nTurnTrackerHold,
               char* strFirstHold, char* strSecondHold, char* strThirdHold, char* strActivePlayerHold, 
               int nFirstScoreHold, int nSecondScoreHold, int nThirdScoreHold, int nActiveScoreHold, int nDoubleMode, int* nFinal,
               int* nFinaleScore1, int* nFinaleScore2, int* nFinaleScore3){
+
+    // set to the hold values to continue from where the game left off
     int nPlayers = nPlayersHold;
     int nTurnTracker = nTurnTrackerHold;
 
@@ -306,11 +330,13 @@ void PlayGame2(int* nLength2, int nPlayersHold, int nTurnTrackerHold,
     strcpy(strThird, strThirdHold);
     strcpy(strActivePlayer, strActivePlayerHold);
 
+    // Set to the hold values to continue from where the game left off
     int nFirstScore = nFirstScoreHold;
     int nSecondScore = nSecondScoreHold;
     int nThirdScore = nThirdScoreHold;
     int nActiveScore = nActiveScoreHold;
 
+    // this time set to the double round length
     int nJeopardyProgress = *nLength2;
 
     char strTitle1[30] = "", strTitle2[30] = "", strTitle3[30] = "", strTitle4[30] = "";
@@ -364,6 +390,7 @@ void PlayGame2(int* nLength2, int nPlayersHold, int nTurnTrackerHold,
         } while (nCateg4 == nCateg1 || nCateg4 == nCateg2 || nCateg4 == nCateg3);
     }
 
+    // this time is GetContent 4-6 since its in questions2.c this time
     GetContent4(nCateg1, strTitle1, Cat1Q1, Cat1Q2, Cat1Q3, Cat1Q4, Cat1Q5);
     GetContent5(nCateg1, Cat1Ch1, Cat1Ch2, Cat1Ch3, Cat1Ch4, Cat1Ch5, &Cat1Ans1, &Cat1Ans2, &Cat1Ans3, &Cat1Ans4, &Cat1Ans5);
     GetContent6(nCateg1, &Cat1P1, &Cat1P2, &Cat1P3, &Cat1P4, &Cat1P5);
@@ -475,6 +502,7 @@ void PlayGame2(int* nLength2, int nPlayersHold, int nTurnTrackerHold,
     printf("Press Any Key to Continue\n");  
     getch();
 
+    // sets the scores for final jeopardy to take it up to the main
     *nFinaleScore1 = nFirstScore;
     *nFinaleScore2 = nSecondScore;
     *nFinaleScore3 = nThirdScore;
@@ -488,25 +516,33 @@ int main ()
     int nGame = 1;
     while (nGame){
         char cMode;
+        // for setting the length and validating the turns for Jeopardy round
         int nLength1;
         int nLengthValid1;
+        // for setting the length and validating the turns for Double round
         int nLength2;
         int nLengthValid2;
+
+        // Sets whether the score will be multiplied by 0 in double round when a mistake is made
         int nDoubleMode;
         int nDoubleModeInput;
 
+        // Variables to hold final scores for when it is Final Jeopardy
         int nFinaleScore1;
         int nFinaleScore2;
         int nFinaleScore3;
 
+        // Random numbers for setting the Final Jeopardy questions
         int nWagerNum1;
         int nWagerNum2;
         int nWagerNum3;
 
+        // Variables to hold answers for FJ
         char strWagerAns1[100];
         char strWagerAns2[100];
         char strWagerAns3[100];
 
+        // Variables to hold the data for FJ's Questions and Answers
         char F1Q[100];
         char F1A[100];
         char F2Q[100];
@@ -514,6 +550,7 @@ int main ()
         char F3Q[100];
         char F3A[100];
 
+        // Variables to hold FJ bets and validation
         int nWager1Choice;
         int nWager1Verify;
         int nWager2Choice;
@@ -521,13 +558,17 @@ int main ()
         int nWager3Choice;
         int nWager3Verify;
 
+        // Whether final jeopardy will occur or not
         int nFinal = 0;
 
+    // for setting the play mode from 1 to 3
     cMode = StartMenu();
 
     switch (cMode) {
+        // play mode
         case '1':
         {
+            // Variables to hold and later  retrieve data to be passed across rounds
                 int nPlayersHold;
                 int nTurnTrackerHold;
 
@@ -540,11 +581,13 @@ int main ()
                 int nSecondScoreHold;
                 int nThirdScoreHold;
                 int nActiveScoreHold;
-            //Sets jeopardy and double round scores
+
+            //Sets jeopardy and double round turn counts
         do {
             printf("Set Jeopardy Round Length (1 to 20): ");
             nLengthValid1 = scanf("%d", &nLength1);
 
+            // input buffer clearer
             int ch;
             while ((ch = getchar()) != '\n' && ch != EOF);
 
@@ -587,6 +630,7 @@ int main ()
                      strActivePlayerHold, &nFirstScoreHold, &nSecondScoreHold, &nThirdScoreHold, &nActiveScoreHold, 1);
 
             if (nLength2 > 0){
+                // is set to be length > 0 to prevent it from happening when the game is quit in jeopardy round
                 PrintDouble();
 
             PlayGame2(&nLength2, nPlayersHold, nTurnTrackerHold, strFirstHold, strSecondHold, strThirdHold, strActivePlayerHold, 
@@ -594,6 +638,7 @@ int main ()
                       &nFinaleScore1, &nFinaleScore2, &nFinaleScore3 );
             }
 
+            // Starts final jeopardy
             if (nFinal){
                 PrintFinal();
                 printf("\nNow starts Final Jeopardy! Bet up to your maximum points.\nWin or Lose how much you gamble.\nAnswers are singular, one-word, and CAPITALIZED.\n");
@@ -603,10 +648,12 @@ int main ()
 
                 ClearTerminal();
 
+                // Random numbers to pick the questions and answers
                 nWagerNum1 = RandMinMax(1, 5);
                 nWagerNum2 = RandMinMax(1, 5);
                 nWagerNum3 = RandMinMax(1, 5);
 
+                // stops duplicates
                 do {
                     nWagerNum2 = RandMinMax(1, 5);
                 } while (nWagerNum1 == nWagerNum2);
@@ -750,6 +797,7 @@ int main ()
             
         } break;
 
+        // Triggers instructions
         case '2': 
         { 
             ClearTerminal();
@@ -788,6 +836,8 @@ int main ()
 
 
         } break;
+
+        // triggers exit
         case '3': 
         { 
             nGame = 0;

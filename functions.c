@@ -130,9 +130,12 @@ void OrderPlayers(int* nPlayers, char* strPlayer1Name, char* strPlayer2Name, cha
     float fRand1 = rand();
     float fRand2 = rand();
     float fRand3 = rand();
+    // when not done this way, it ends up all becoming the same.
 
     //* aren't put behind the chars because they are arrays. Arrays are treated like pointers
 
+
+    // sets which players will be first, second, and third based on their fRand number
     if (*nPlayers == 3) {
         if (fRand1 > fRand2 && fRand1 > fRand3) {
             strcpy(strFirst, strPlayer1Name);
@@ -256,6 +259,7 @@ while (nChoiceLoop2) {
     while (getchar() != '\n');
 
     if (cQChoice == 'A') {
+        // *P# is for checking its prize value, it is set to 0 when answered
         if (*P1 > 0) {
             nChoiceLoop2 = 0;
             return 1;
@@ -313,6 +317,8 @@ void ChangePlayers(int *nTurnTracker, int nPlayers,
                    int* nFirstScore, int* nSecondScore, int* nThirdScore,
                    char* strActivePlayer, int* nActiveScore){
 
+                    // updates the nThScore so that the value previously had with nActiveScore doesnt get lost
+                    // updating based on an active variable made it easier and needs less ifs/cases
                     switch (*nTurnTracker){
                         case 1:{
                             *nFirstScore = *nActiveScore;
@@ -328,6 +334,8 @@ void ChangePlayers(int *nTurnTracker, int nPlayers,
                         }
                     }
 
+                    // changes nTurnTracker to move to the next player
+                    // checks if its equal to nPlayers count to prevent overflow
                     if (*nTurnTracker == nPlayers){
                         *nTurnTracker = 1;
                     } else {
@@ -390,6 +398,7 @@ int CheckAnswer(char* CatQ, char* CatCh, char CatAns, int* nActiveScore, int* Ca
             printf("Sorry but that answer is incorrect. \nYour points have been reset to 0\n\n");
         }
         *nActiveScore = (*nActiveScore - *CatP)*nDoubleMode;
+        // returns the item's prize so it can be brought up and used
         return *CatP;
     }
 }
@@ -414,13 +423,17 @@ void PickAnswer (char* CatQ, char* CatCh, char CatAns, int* CatP,
                 char* strActivePlayer, int* nActiveScore, int nDoubleMode){
 
         int nAnswerStatus = CheckAnswer(CatQ, CatCh, CatAns, nActiveScore, CatP, strActivePlayer, nDoubleMode);
+        // checks to see if a mistake is made
         int nFailedQ;
+        // for rebound answering of next players
         char cRebound;
 
     if (nAnswerStatus > 0 && nPlayers > 1){
+        // nFailCounter is for checking if the amount of fails is equal to amount of players
         nFailCounter++;
         nFailedQ = 1;
 
+        // moves to next players if a mistake is made
         do {
             ChangePlayers(nTurnTracker, nPlayers, strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore, strActivePlayer, nActiveScore);
             printf("What is your answer to the question? ");
@@ -430,6 +443,7 @@ void PickAnswer (char* CatQ, char* CatCh, char CatAns, int* CatP,
             if (cRebound == CatAns){
                 printf("Correct! You won $%d\n", *CatP);
                 *nActiveScore += *CatP;
+                // stops the loop
                 nFailedQ = 0;
 
                 printf("Press Any Key to Continue\n");  
@@ -437,6 +451,7 @@ void PickAnswer (char* CatQ, char* CatCh, char CatAns, int* CatP,
 
                     ClearTerminal();
             } else {
+                // changes the penalty when a mistake is made in double mode
                 if (nDoubleMode){
                     printf("Sorry, %s, that is the wrong answer.\n You lost $%d\n", strActivePlayer, *CatP);
                 } else {
@@ -445,8 +460,10 @@ void PickAnswer (char* CatQ, char* CatCh, char CatAns, int* CatP,
                 *nActiveScore = (*nActiveScore - *CatP)*nDoubleMode;
             }
 
+            // updates amount of mistakes for the item
             nFailCounter += 1;
 
+            // checks if nobody will have answered it correctly. stops it from being infinitely answerable
             if (nFailCounter == nPlayers && cRebound != CatAns){
                 printf("Nobody got the correct answer.\n");
                 nFailedQ = 0;
