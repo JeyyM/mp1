@@ -1,22 +1,21 @@
 /*
 	Description: Checks to see if a question choice is available
 	Precondition: A valid category was chosen
-	@ param
-    Title# - Question Titles
-    Cat#Q# - Category Questions
-    Cat#Ch# - Category Question's Choices
-    Cat#Ans# - Category Question's Answers
-    Cat#Ans# - Category Question's Prizes
-    nTurnTracker - Tracks current player
-    nPlayers - Number of players
-    strTh = The players' names
-    nThScore = The players' scores
-    strActivePlayer = Current player name
-    nActiveScore = Current player score
-    CatXProgress = Number of questions left for a category
-    nJeopardyProgress = Number of turns left for the round
-    nLength2 = Double round length
-    nDoubleMode = Double round penalty type
+    @param Title# - Question Titles
+    @param Cat#Q# - Category Questions
+    @param Cat#Ch# - Category Question's Choices
+    @param Cat#Ans# - Category Question's Answers
+    @param Cat#Ans# - Category Question's Prizes
+    @param nTurnTracker - Tracks current player
+    @param nPlayers - Number of players
+    @param strTh = The players' names
+    @param nThScore = The players' scores
+    @param strActivePlayer = Current player name
+    @param nActiveScore = Current player score
+    @param CatXProgress = Number of questions left for a category
+    @param nJeopardyProgress = Number of turns left for the round
+    @param nLength2 = Double round length
+    @param nDoubleMode = Double round penalty type
 	@return none
 */
 

@@ -201,10 +201,9 @@ int  zC7P5 = 2000;
 /*
 	Description: Assigns the title and questions for each category based on the number they roll
 	Precondition: Randomized numbers have been set
-	@ param 
-    TitleNum - the category random number
-    strTitle - the title container
-    CatQ# - the category's questions
+    @param TitleNum - the category random number
+    @param strTitle - the title container
+    @param CatQ# - the category's questions
 	@return none
 */
 
@@ -390,9 +389,8 @@ void GetContent5(int TitleNum, char* CatCh1, char* CatCh2, char* CatCh3, char* C
 /*
 	Description: Assigns the prize for each question
 	Precondition: Randomized numbers have been set
-	@ param 
-    TitleNum - the random number
-    CatP# - the prize for each item
+    @param TitleNum - the random number
+    @param CatP# - the prize for each item
 	@return none
 */
 void GetContent6(int TitleNum, int* CatP1, int* CatP2, int* CatP3, int* CatP4, int* CatP5)
@@ -475,10 +473,9 @@ char FA5[] = "DODO";
 /*
 	Description: Picks final jeopardy question and details
 	Precondition: Final Jeopardy is reached
-	@ param 
-    FNum - Chosen random number
-    FQ - Container to get final question
-    FA - Container to get final answer
+    @param FNum - Chosen random number
+    @param FQ - Container to get final question
+    @param FA - Container to get final answer
 	@return none
 */
 void GetFinal(int FNum, char* FQ, char* FA){

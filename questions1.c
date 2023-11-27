@@ -202,10 +202,9 @@ int  C7P5 = 1000;
 /*
 	Description: Assigns the title and questions for each category based on the number they roll
 	Precondition: Randomized numbers have been set
-	@ param 
-    TitleNum - the category random number
-    strTitle - the title container
-    CatQ# - the category's questions
+    @param TitleNum - the category random number
+    @param strTitle - the title container
+    @param CatQ# - the category's questions
 	@return none
 */
 
@@ -281,9 +280,9 @@ void GetContent1(int TitleNum, char* strTitle, char* CatQ1, char* CatQ2, char* C
 /*
 	Description: Assigns the choices and answers for each item in the category based on the number they roll
 	Precondition: Randomized numbers have been set
-	@ param TitleNum - the category random number
-    CatCh# - the choices for each question
-    CatAns# - the answers for each question
+	@param TitleNum - the category random number
+    @param CatCh# - the choices for each question
+    @param CatAns# - the answers for each question
 	@return none
 */
 void GetContent2(int TitleNum, char* CatCh1, char* CatCh2, char* CatCh3, char* CatCh4, char* CatCh5, char* CatAns1, char* CatAns2, char* CatAns3, char* CatAns4, char* CatAns5)
@@ -392,9 +391,8 @@ void GetContent2(int TitleNum, char* CatCh1, char* CatCh2, char* CatCh3, char* C
 /*
 	Description: Assigns the prize for each question
 	Precondition: Randomized numbers have been set
-	@ param 
-    TitleNum - the random number
-    CatP# - the prize for each item
+    @param TitleNum - the random number
+    @param CatP# - the prize for each item
 	@return none
 */
 void GetContent3(int TitleNum, int* CatP1, int* CatP2, int* CatP3, int* CatP4, int* CatP5)

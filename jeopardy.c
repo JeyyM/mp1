@@ -1,7 +1,7 @@
 /*
 Description: Machine Project for Term 1 2023-2024, Jeopardy Game
 Programmed By: Miranda, Juan Miguel, S22A
-Last Modified: 11/26/2023
+Last Modified: 11/28/2023
 Version: 1.0
 Acknowledgements: Some libraries such <string.h> <time.h> were used to gain certain functionalities.
                   Some Googling was done when problems occured.
@@ -20,20 +20,19 @@ Acknowledgements: Some libraries such <string.h> <time.h> were used to gain cert
 /*
 	Description:
 	Precondition:
-	@ param <name> <purpose>
+	@param <name> <purpose>
 	@return <returned item>
 */
 
 /*
 	Description: Starts the Jeopardy round
-	Precondition: none
-	@ param 
-    nLength1 and nLength2 - Set the number of rounds for normal and double round
-    nPlayersHold - Will be modified to get the number of players after Jeopardy round
-    nTurnTrackerHold - Will be modified to get the current player after Jeopardy round
-    strThHold and strActivePlayerHold - Will be modified to get the player names after Jeopardy round
-    nThScoreHold and nActiveScoreHold - Will be modified to get the player scores after Jeopardy round
-    nDoubleMode - Sets the Double round penalty
+	Precondition: none 
+    @param nLength1 and nLength2 - Set the number of rounds for normal and double round
+    @param nPlayersHold - Will be modified to get the number of players after Jeopardy round
+    @param nTurnTrackerHold - Will be modified to get the current player after Jeopardy round
+    @param strThHold and strActivePlayerHold - Will be modified to get the player names after Jeopardy round
+    @param nThScoreHold and nActiveScoreHold - Will be modified to get the player scores after Jeopardy round
+    @param nDoubleMode - Sets the Double round penalty
 
 	@return none
 */
@@ -298,15 +297,14 @@ void PlayGame(int nLength1, int* nLength2, int* nPlayersHold, int* nTurnTrackerH
 /*
 	Description: Starts the Double round
 	Precondition: none
-	@ param 
-    nLength2 - Set the number of rounds for double round
-    nPlayersHold - Will be modified to get the number of players after Jeopardy round
-    nTurnTrackerHold - Will be modified to get the current player after Jeopardy round
-    strThHold and strActivePlayerHold - Will be modified to get the player names after Jeopardy round
-    nThScoreHold and nActiveScoreHold - Will be modified to get the player scores after Jeopardy round
-    nDoubleMode - Sets the Double round penalty
-    nFinal - The status to show if Final Jeopardy will occur
-    nFinaleScore# - The final scores of the players before Final Jeopardy
+    @param nLength2 - Set the number of rounds for double round
+    @param nPlayersHold - Will be modified to get the number of players after Jeopardy round
+    @param nTurnTrackerHold - Will be modified to get the current player after Jeopardy round
+    @param strThHold and strActivePlayerHold - Will be modified to get the player names after Jeopardy round
+    @param nThScoreHold and nActiveScoreHold - Will be modified to get the player scores after Jeopardy round
+    @param nDoubleMode - Sets the Double round penalty
+    @param nFinal - The status to show if Final Jeopardy will occur
+    @param nFinaleScore# - The final scores of the players before Final Jeopardy
 	@return none
 */
 void PlayGame2(int* nLength2, int nPlayersHold, int nTurnTrackerHold, 

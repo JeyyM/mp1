@@ -7,7 +7,7 @@
 /*
 	Description: Clears the terminal
 	Precondition: none
-	@ param none
+	@param none
 	@return none
 */
 void ClearTerminal() 
@@ -19,7 +19,7 @@ void ClearTerminal()
 /*
 	Description: Picks the number of players
 	Precondition: none
-	@ param none
+	@param none
 	@return the integer version of the chosen char, keeps checking for valid inputs
 */
 int GetPlayers() {
@@ -64,7 +64,7 @@ int GetPlayers() {
 /*
 	Description: Triggers the start menu on startup and when a game is quit
 	Precondition: none
-	@ param none
+	@param none
 	@return the chosen start status whether start game, instructions, or exit game
 */
 char StartMenu()
@@ -117,10 +117,9 @@ char StartMenu()
 /*
 	Description: Assigns the order of each player name on the strPlacements
 	Precondition: The number of players are set and 1-3 player names are given
-	@ param 
-    nPlayers - number of players
-    strPlayer#Names - the names of the players
-    strTh - the ordering names
+    @param nPlayers - number of players
+    @param strPlayer#Names - the names of the players
+    @param strTh - the ordering names
 	@return none
 */
 void OrderPlayers(int* nPlayers, char* strPlayer1Name, char* strPlayer2Name, char* strPlayer3Name, char* strFirst, char* strSecond, char* strThird) {
@@ -199,9 +198,8 @@ void OrderPlayers(int* nPlayers, char* strPlayer1Name, char* strPlayer2Name, cha
 /*
 	Description: Gets a random number between a minimum and maximum
 	Precondition: none
-	@ param 
-    min - lowest floor
-    max - the highest possible
+    @param min - lowest floor
+    @param max - the highest possible
 	@return randomized number
 */
 int RandMinMax(int min, int max) 
@@ -212,11 +210,10 @@ int RandMinMax(int min, int max)
 /*
 	Description: Sets up the current player
 	Precondition: All of the player names have been set
-	@ param 
-    nTurnTracker - keeps track of which player's turn it is
-    Player#Name - the names of the 1-3 players
-    Player#Score - the player scores 
-    strActivePlayer and nActiveScore - the containers that hold the current player's data
+    @param nTurnTracker - keeps track of which player's turn it is
+    @param Player#Name - the names of the 1-3 players
+    @param Player#Score - the player scores 
+    @param strActivePlayer and nActiveScore - the containers that hold the current player's data
 	@return none
 */
 void SetPlayer(int nTurnTracker, char* Player1Name, char* Player2Name, char* Player3Name, 
@@ -244,7 +241,7 @@ void SetPlayer(int nTurnTracker, char* Player1Name, char* Player2Name, char* Pla
 /*
 	Description: Checks to see if a question choice is available
 	Precondition: A valid category was chosen
-	@ param p# - the prizes for each item
+	@param p# - the prizes for each item
 	@return number of the question
 */
 int ValidateQuestion(int* P1, int* P2, int* P3, int* P4, int* P5){
@@ -305,11 +302,10 @@ return 1;
 /*
 	Description: Changes the active player when a wrong answer is chosen
 	Precondition: Players have been set along with the player order
-	@ param 
-    nTurnTracker - Tracks which player is active 
-    strTh - the names of the players
-    nThScore - the scores of the players
-    strActivePlayer and nActiveScore - active player name and score
+    @param nTurnTracker - Tracks which player is active 
+    @param strTh - the names of the players
+    @param nThScore - the scores of the players
+    @param strActivePlayer and nActiveScore - active player name and score
 	@return none
 */
 void ChangePlayers(int *nTurnTracker, int nPlayers,
@@ -366,7 +362,7 @@ void ChangePlayers(int *nTurnTracker, int nPlayers,
 /*
 	Description: 
 	Precondition: A valid category was chosen
-	@ param p# - the prizes for each item
+	@param p# - the prizes for each item
 	@return number of the question
 */
 int CheckAnswer(char* CatQ, char* CatCh, char CatAns, int* nActiveScore, int* CatP, char* strActivePlayer, int nDoubleMode){
@@ -406,13 +402,12 @@ int CheckAnswer(char* CatQ, char* CatCh, char CatAns, int* nActiveScore, int* Ca
 /*
 	Description: Picks the player's final answer
 	Precondition: The category hasn't been completed yet
-	@ param 
-    CatQ Ch Ans P - the category item's details
-    nTurnTracker - Tracks which player is currently playing
-    nPlayers - the number of players
-    nFailCounter - number of times a question is answered wrong
-    nThScore - the players' scores
-    nActivePlayer and Score - the active player's name and score
+    @param CatQ Ch Ans P - the category item's details
+    @param nTurnTracker - Tracks which player is currently playing
+    @param nPlayers - the number of players
+    @param nFailCounter - number of times a question is answered wrong
+    @param nThScore - the players' scores
+    @param nActivePlayer and Score - the active player's name and score
 	@return none
 */
 
