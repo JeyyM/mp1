@@ -1,7 +1,9 @@
 #include <string.h>
 
+// Category names that can be picked
 char C1[] = "Country Capitals";
 
+//Euestions that can be picked
 char C1Q1[] = "What is the capital of France?";
 char C1C1[] = "A) Madrid\nB) Berlin\nC) Rome\nD) Paris\n";
 char C1A1 = 'D';
@@ -145,7 +147,7 @@ int  C5P5 = 1000;
 
 char C6[] = "Structures of Society";
 
-char C6Q1[] = "What type of building typically houses artworks and sculptures?";
+char C6Q1[] = "What type of building ty ally houses artworks and sculptures?";
 char C6C1[] = "A) Museum\nB) Library\nC) Hospital\nD) School\n";
 char C6A1 = 'A';
 int  C6P1 = 200;
@@ -169,20 +171,6 @@ char C6Q5[] = "Which building type is a place for education and learning, often 
 char C6C5[] = "A) School\nB) Bank\nC) Theater\nD) Post Office\n";
 char C6A5 = 'A';
 int  C6P5 = 1000;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 char C7[] = "I Speak for the Trees";
 
@@ -214,12 +202,15 @@ int  C7P5 = 1000;
 /*
 	Description: Assigns the title and questions for each category based on the number they roll
 	Precondition: Randomized numbers have been set
-	@ param TitleNum - the random number, strTitle - the tite container, CatQ# - the category's questions
+    @param TitleNum - the category random number
+    @param strTitle - the title container
+    @param CatQ# - the category's questions
 	@return none
 */
 
 // NOTE: GetContent was split up to not make it too big
-void getContent1(int TitleNum, char* strTitle, char* CatQ1, char* CatQ2, char* CatQ3, char* CatQ4, char* CatQ5) {
+// Each GetContent is for picking up details based on the random number generated
+void GetContent1(int TitleNum, char* strTitle, char* CatQ1, char* CatQ2, char* CatQ3, char* CatQ4, char* CatQ5) {
     switch (TitleNum){
         case 1:{
             strcpy(strTitle, C1);
@@ -289,10 +280,12 @@ void getContent1(int TitleNum, char* strTitle, char* CatQ1, char* CatQ2, char* C
 /*
 	Description: Assigns the choices and answers for each item in the category based on the number they roll
 	Precondition: Randomized numbers have been set
-	@ param TitleNum - the random number, CatCh# - the choices for each question, CatAns# - the answers for each question
+	@param TitleNum - the category random number
+    @param CatCh# - the choices for each question
+    @param CatAns# - the answers for each question
 	@return none
 */
-void getContent2(int TitleNum, char* CatCh1, char* CatCh2, char* CatCh3, char* CatCh4, char* CatCh5, char* CatAns1, char* CatAns2, char* CatAns3, char* CatAns4, char* CatAns5)
+void GetContent2(int TitleNum, char* CatCh1, char* CatCh2, char* CatCh3, char* CatCh4, char* CatCh5, char* CatAns1, char* CatAns2, char* CatAns3, char* CatAns4, char* CatAns5)
 {
     switch (TitleNum){
         case 1:{
@@ -398,10 +391,11 @@ void getContent2(int TitleNum, char* CatCh1, char* CatCh2, char* CatCh3, char* C
 /*
 	Description: Assigns the prize for each question
 	Precondition: Randomized numbers have been set
-	@ param TitleNum - the random number, CatP1 - the prize for each item
+    @param TitleNum - the random number
+    @param CatP# - the prize for each item
 	@return none
 */
-void getContent3(int TitleNum, int* CatP1, int* CatP2, int* CatP3, int* CatP4, int* CatP5)
+void GetContent3(int TitleNum, int* CatP1, int* CatP2, int* CatP3, int* CatP4, int* CatP5)
 {
     switch (TitleNum){
         case 1:{

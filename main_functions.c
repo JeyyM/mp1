@@ -1,50 +1,22 @@
 /*
-	Description: 
-	Precondition: A valid category was chosen
-	@ param p# - the prizes for each item
-	@return number of the question
-*/
-int CheckAnswer(int* CatP){
-    printf("CHECK ANSWEER%d\n", CatP);
-
-        printf("Numbered %d\n", *CatP);
-    
-    *CatP = 0;
-
-
-    // char cAnswerChoice;
-
-    // printf("Your question is: %s\n", CatQ);
-    // printf("Your choices are (%c):\n %s\n", CatAns, CatCh);
-
-    // printf("What is your choice: ");
-    // scanf(" %1c", &cAnswerChoice);
-    // while (getchar() != '\n');
-
-    // if (cAnswerChoice == CatAns){
-    //     printf("Congrats, %s! You won $%d \n", strActivePlayer, *CatP);
-    //     *nActiveScore += *CatP;
-    //     *CatP = 0;
-    //     CatProgress += 1;
-
-    //     printf("Press Any Key to Continue\n");  
-    //     getch();
-
-    //     clearTerminal();
-
-    //     return 0;
-    // } else {
-    //     printf("Sorry, %s, that is the wrong answer.\n You lost $%d\n", strActivePlayer, *CatP);
-    //     *nActiveScore -= *CatP;
-    //     return *CatP;
-    // }
-}
-
-/*
 	Description: Checks to see if a question choice is available
 	Precondition: A valid category was chosen
-	@ param p# - the prizes for each item
-	@return number of the question
+    @param Title# - Question Titles
+    @param Cat#Q# - Category Questions
+    @param Cat#Ch# - Category Question's Choices
+    @param Cat#Ans# - Category Question's Answers
+    @param Cat#Ans# - Category Question's Prizes
+    @param nTurnTracker - Tracks current player
+    @param nPlayers - Number of players
+    @param strTh = The players' names
+    @param nThScore = The players' scores
+    @param strActivePlayer = Current player name
+    @param nActiveScore = Current player score
+    @param CatXProgress = Number of questions left for a category
+    @param nJeopardyProgress = Number of turns left for the round
+    @param nLength2 = Double round length
+    @param nDoubleMode = Double round penalty type
+	@return none
 */
 
 void PickChoice(
@@ -78,28 +50,23 @@ void PickChoice(
 
                 char* strFirst, char* strSecond, char* strThird,
                 int* nFirstScore, int* nSecondScore, int* nThirdScore,
-                char* strActivePlayer, int* nActiveScore
+                char* strActivePlayer, int* nActiveScore,
+
+                int* CatAProgress, int* CatBProgress, int* CatCProgress, int* CatDProgress, int* CatEProgress, int* nJeopardyProgress, int* nLength2,
+                int nDoubleMode
                 )
     {
 
-    int CatAProgress = 5;
-    int CatBProgress = 5;
-    int CatCProgress = 5;
-    int CatDProgress = 5;
-    int CatEProgress = 5;
-
+    // for validation of category choic
     int nChoiceLoop1 = 1;
+
+    // tracks how many times a question was failed
     int nFailCounter = 0;
 
     char cCategChoice;
-    char cQuestionChoice;
-
-    int nAnswerStatus;
 
     int nValidQ;
-    int nFailedQ;
-    char cRebound;
-
+    // prints details of active player
         printf("It is currently %s's turn\n Your score is: %d\n", strActivePlayer, *nActiveScore);
         printf("Select which category you want to answer: \n [A] %s\n [B] %s\n [C] %s\n [D] %s\n [E] Exit Game\n", Title1, Title2, Title3, Title4);
 
@@ -109,242 +76,52 @@ void PickChoice(
             while (getchar() != '\n');
 
             if (cCategChoice == 'A') {
-                if (CatAProgress > 0) {
+                if (*CatAProgress > 0) {
                     printf("You chose category [A] %s\n", Title1);
 
                     nValidQ = ValidateQuestion(Cat1P1, Cat1P2, Cat1P3, Cat1P4, Cat1P5);
 
+                    // when the progress becomes 0, the category can no longer be chosen
+                    *CatAProgress -= 1;
+
+                    // for answering questions
                     switch (nValidQ){
                         case 1:{
-
-                            // printf("CASE 1\n%s \n%s \n%c \n%d \n%d \n%s \n%d\n", Cat1Q1, Cat1Ch1, Cat1Ans1, nActiveScore, *Cat1P1, strActivePlayer, CatAProgress);     
-                            // nAnswerStatus = CheckAnswer(Cat1Q2, Cat1Ch2, Cat1Ans2, nActiveScore, Cat1P2, strActivePlayer, &CatAProgress);
-
-                            // printf("KILL YOURSELF\n %s\n %s\n %c\n %d\n %d\n %d\n %d\n %d\n %s\n %s\n %s\n %d\n %d\n %d\n %s\n %d\n FUCK OFF\n", Cat1Q1, Cat1Ch1, Cat1Ans1, *Cat1P1, 
-                            //            *nTurnTracker, nPlayers, &CatAProgress, nFailCounter,
-                            //            strFirst, strSecond, strThird, *nFirstScore, *nSecondScore, *nThirdScore,
-                            //            strActivePlayer, *nActiveScore);
-
-                            PickAnswer(Cat1P1);
-
-                            // PickAnswer(Cat1Q1, Cat1Ch1, Cat1Ans1, *Cat1P1, 
-                            //            *nTurnTracker, nPlayers, &CatAProgress, nFailCounter,
-                            //            strFirst, strSecond, strThird, *nFirstScore, *nSecondScore, *nThirdScore,
-                            //            strActivePlayer, *nActiveScore);
+                        
+                            PickAnswer(Cat1Q1, Cat1Ch1, Cat1Ans1, Cat1P1, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore, nDoubleMode);
 
                         } break;
 
-                        // case 2:{
-                        //     nAnswerStatus = CheckAnswer(Cat1Q2, Cat1Ch2, Cat1Ans2, nActiveScore, Cat1P2, strActivePlayer, &CatAProgress);
+                        case 2:{
+                            PickAnswer(Cat1Q2, Cat1Ch2, Cat1Ans2, Cat1P2, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore, nDoubleMode);
+                        } break;
 
-                        //     if (nAnswerStatus > 0 && nPlayers > 1){
-                        //         nFailCounter++;
-                        //         nFailedQ = 1;
+                        case 3:{
+                            PickAnswer(Cat1Q3, Cat1Ch3, Cat1Ans3, Cat1P3, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore, nDoubleMode);
+                        } break;
 
-                        //         do {
-                        //             changePlayers(nTurnTracker, nPlayers, strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore, strActivePlayer, nActiveScore);
-                        //             printf("What is your answer to the question? ");
-                        //             scanf(" %1c", &cRebound);
-                        //             while (getchar() != '\n');
+                        case 4:{
+                            PickAnswer(Cat1Q4, Cat1Ch4, Cat1Ans4, Cat1P4, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore, nDoubleMode);
+                        } break;
 
-                        //             if (cRebound == Cat1Ans2){
-                        //                 printf("Correct! You won $%d\n", *Cat1P2);
-                        //                 *nActiveScore += *Cat1P2;
-                        //                 nFailedQ = 0;
-
-                        //                 printf("Press Any Key to Continue\n");  
-                        //                  getch();
-
-                        //                  clearTerminal();
-                        //             } else {
-                        //                 printf("Sorry but that answer is incorrect. You lost $%d\n\n", *Cat1P2);
-                        //                 *nActiveScore -= *Cat1P2;
-                        //             }
-
-                        //             nFailCounter += 1;
-
-                        //             if (nFailCounter == nPlayers && cRebound != Cat1Ans2){
-                        //                 printf("Nobody got the correct answer.\n");
-                        //                 nFailedQ = 0;
-
-                        //                 printf("Press Any Key to Continue\n");  
-                        //                  getch();
-
-                        //                  clearTerminal();
-                        //             }
-                                    
-                        //         } while (nFailedQ);
-                        //     }
-
-                        //     *Cat1P2 = 0;
-
-                        //     if (nPlayers == 1 && nAnswerStatus > 0){
-                        //                 printf("Press Any Key to Continue\n");  
-                        //                  getch();
-
-                        //                  clearTerminal();
-                        //     }
-                            
-                        // } break;
-
-                        // case 3:{
-                        //     nAnswerStatus = CheckAnswer(Cat1Q3, Cat1Ch3, Cat1Ans3, nActiveScore, Cat1P3, strActivePlayer, &CatAProgress);
-
-                        //     if (nAnswerStatus > 0 && nPlayers > 1){
-                        //         nFailCounter++;
-                        //         nFailedQ = 1;
-
-                        //         do {
-                        //             changePlayers(nTurnTracker, nPlayers, strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore, strActivePlayer, nActiveScore);
-                        //             printf("What is your answer to the question? ");
-                        //             scanf(" %1c", &cRebound);
-                        //             while (getchar() != '\n');
-
-                        //             if (cRebound == Cat1Ans3){
-                        //                 printf("Correct! You won $%d\n", *Cat1P3);
-                        //                 *nActiveScore += *Cat1P3;
-                        //                 nFailedQ = 0;
-
-                        //                 printf("Press Any Key to Continue\n");  
-                        //                  getch();
-
-                        //                  clearTerminal();
-                        //             } else {
-                        //                 printf("Sorry but that answer is incorrect. You lost $%d\n\n", *Cat1P3);
-                        //                 *nActiveScore -= *Cat1P3;
-                        //             }
-
-                        //             nFailCounter += 1;
-
-                        //             if (nFailCounter == nPlayers && cRebound != Cat1Ans3){
-                        //                 printf("Nobody got the correct answer.\n");
-                        //                 nFailedQ = 0;
-
-                        //                 printf("Press Any Key to Continue\n");  
-                        //                  getch();
-
-                        //                  clearTerminal();
-                        //             }
-                                    
-                        //         } while (nFailedQ);
-                        //     }
-
-                        //     *Cat1P3 = 0;
-
-                        //     if (nPlayers == 1 && nAnswerStatus > 0){
-                        //                 printf("Press Any Key to Continue\n");  
-                        //                  getch();
-
-                        //                  clearTerminal();
-                        //     }
-                            
-                        // } break;
-
-                        // case 4:{
-                        //     nAnswerStatus = CheckAnswer(Cat1Q4, Cat1Ch4, Cat1Ans4, nActiveScore, Cat1P4, strActivePlayer, &CatAProgress);
-
-                        //     if (nAnswerStatus > 0 && nPlayers > 1){
-                        //         nFailCounter++;
-                        //         nFailedQ = 1;
-
-                        //         do {
-                        //             changePlayers(nTurnTracker, nPlayers, strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore, strActivePlayer, nActiveScore);
-                        //             printf("What is your answer to the question? ");
-                        //             scanf(" %1c", &cRebound);
-                        //             while (getchar() != '\n');
-
-                        //             if (cRebound == Cat1Ans4){
-                        //                 printf("Correct! You won $%d\n", *Cat1P4);
-                        //                 *nActiveScore += *Cat1P4;
-                        //                 nFailedQ = 0;
-
-                        //                 printf("Press Any Key to Continue\n");  
-                        //                  getch();
-
-                        //                  clearTerminal();
-                        //             } else {
-                        //                 printf("Sorry but that answer is incorrect. You lost $%d\n\n", *Cat1P4);
-                        //                 *nActiveScore -= *Cat1P4;
-                        //             }
-
-                        //             nFailCounter += 1;
-
-                        //             if (nFailCounter == nPlayers && cRebound != Cat1Ans4){
-                        //                 printf("Nobody got the correct answer.\n");
-                        //                 nFailedQ = 0;
-
-                        //                 printf("Press Any Key to Continue\n");  
-                        //                  getch();
-
-                        //                  clearTerminal();
-                        //             }
-                                    
-                        //         } while (nFailedQ);
-                        //     }
-
-                        //     *Cat1P4 = 0;
-
-                        //     if (nPlayers == 1 && nAnswerStatus > 0){
-                        //                 printf("Press Any Key to Continue\n");  
-                        //                  getch();
-
-                        //                  clearTerminal();
-                        //     }
-                            
-                        // } break;
-
-                        // case 5:{
-                        //     nAnswerStatus = CheckAnswer(Cat1Q5, Cat1Ch5, Cat1Ans5, nActiveScore, Cat1P5, strActivePlayer, &CatAProgress);
-
-                        //     if (nAnswerStatus > 0 && nPlayers > 1){
-                        //         nFailCounter++;
-                        //         nFailedQ = 1;
-
-                        //         do {
-                        //             changePlayers(nTurnTracker, nPlayers, strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore, strActivePlayer, nActiveScore);
-                        //             printf("What is your answer to the question? ");
-                        //             scanf(" %1c", &cRebound);
-                        //             while (getchar() != '\n');
-
-                        //             if (cRebound == Cat1Ans5){
-                        //                 printf("Correct! You won $%d\n", *Cat1P5);
-                        //                 *nActiveScore += *Cat1P5;
-                        //                 nFailedQ = 0;
-
-                        //                 printf("Press Any Key to Continue\n");  
-                        //                  getch();
-
-                        //                  clearTerminal();
-                        //             } else {
-                        //                 printf("Sorry but that answer is incorrect. You lost $%d\n\n", *Cat1P5);
-                        //                 *nActiveScore -= *Cat1P5;
-                        //             }
-
-                        //             nFailCounter += 1;
-
-                        //             if (nFailCounter == nPlayers && cRebound != Cat1Ans5){
-                        //                 printf("Nobody got the correct answer.\n");
-                        //                 nFailedQ = 0;
-
-                        //                 printf("Press Any Key to Continue\n");  
-                        //                  getch();
-
-                        //                  clearTerminal();
-                        //             }
-                                    
-                        //         } while (nFailedQ);
-                        //     }
-
-                        //     *Cat1P5 = 0;
-
-                        //     if (nPlayers == 1 && nAnswerStatus > 0){
-                        //                 printf("Press Any Key to Continue\n");  
-                        //                  getch();
-
-                        //                  clearTerminal();
-                        //     }
-                            
-                        // } break;               
+                        case 5:{
+                            PickAnswer(Cat1Q5, Cat1Ch5, Cat1Ans5, Cat1P5, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore, nDoubleMode);
+                        } break;               
                     }
 
                     nChoiceLoop1 = 0;
@@ -352,36 +129,168 @@ void PickChoice(
                     printf("The category has been completed. Pick another.\n");
                 }
             } else if (cCategChoice == 'B') {
-                if (CatBProgress > 0) {
-                    printf("You chose category B\n");
+                if (*CatBProgress > 0) {
+                    printf("You chose category [B] %s\n", Title2);
+
+                    nValidQ = ValidateQuestion(Cat2P1, Cat2P2, Cat2P3, Cat2P4, Cat2P5);
+                    *CatBProgress -= 1;
+
+                    switch (nValidQ){
+                        case 1:{
+                        
+                            PickAnswer(Cat2Q1, Cat2Ch1, Cat2Ans1, Cat2P1, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore, nDoubleMode);
+
+                        } break;
+
+                        case 2:{
+                            PickAnswer(Cat2Q2, Cat2Ch2, Cat2Ans2, Cat2P2, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore, nDoubleMode);
+                        } break;
+
+                        case 3:{
+                            PickAnswer(Cat2Q3, Cat2Ch3, Cat2Ans3, Cat2P3, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore, nDoubleMode);
+                        } break;
+
+                        case 4:{
+                            PickAnswer(Cat2Q4, Cat2Ch4, Cat2Ans4, Cat2P4, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore, nDoubleMode);
+                        } break;
+
+                        case 5:{
+                            PickAnswer(Cat2Q5, Cat2Ch5, Cat2Ans5, Cat2P5, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore, nDoubleMode);
+                        } break;               
+                    }
+
                     nChoiceLoop1 = 0;
                 } else {
                     printf("The category has been completed. Pick another.\n");
                 }
             } else if (cCategChoice == 'C') {
-                if (CatBProgress > 0) {
-                    printf("You chose category B\n");
+                if (*CatCProgress > 0) {
+                    printf("You chose category [C] %s\n", Title3);
+
+                    nValidQ = ValidateQuestion(Cat3P1, Cat3P2, Cat3P3, Cat3P4, Cat3P5);
+                    *CatCProgress -= 1;
+
+                    switch (nValidQ){
+                        case 1:{
+                        
+                            PickAnswer(Cat3Q1, Cat3Ch1, Cat3Ans1, Cat3P1, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore, nDoubleMode);
+
+                        } break;
+
+                        case 2:{
+                            PickAnswer(Cat3Q2, Cat3Ch2, Cat3Ans2, Cat3P2, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore, nDoubleMode);
+                        } break;
+
+                        case 3:{
+                            PickAnswer(Cat3Q3, Cat3Ch3, Cat3Ans3, Cat3P3, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore, nDoubleMode);
+                        } break;
+
+                        case 4:{
+                            PickAnswer(Cat3Q4, Cat3Ch4, Cat3Ans4, Cat3P4, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore, nDoubleMode);
+                        } break;
+
+                        case 5:{
+                            PickAnswer(Cat3Q5, Cat3Ch5, Cat3Ans5, Cat3P5, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore, nDoubleMode);
+                        } break;               
+                    }
+
                     nChoiceLoop1 = 0;
                 } else {
                     printf("The category has been completed. Pick another.\n");
                 }
             } else if (cCategChoice == 'D') {
-                if (CatBProgress > 0) {
-                    printf("You chose category B\n");
+                if (*CatBProgress > 0) {
+                    printf("You chose category [D] %s\n", Title4);
+
+                    nValidQ = ValidateQuestion(Cat4P1, Cat4P2, Cat4P3, Cat4P4, Cat4P5);
+                    *CatDProgress -= 1;
+
+                    switch (nValidQ){
+                        case 1:{
+                        
+                            PickAnswer(Cat4Q1, Cat4Ch1, Cat4Ans1, Cat4P1, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore, nDoubleMode);
+
+                        } break;
+
+                        case 2:{
+                            PickAnswer(Cat4Q2, Cat4Ch2, Cat4Ans2, Cat4P2, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore, nDoubleMode);
+                        } break;
+
+                        case 3:{
+                            PickAnswer(Cat4Q3, Cat4Ch3, Cat4Ans3, Cat4P3, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore, nDoubleMode);
+                        } break;
+
+                        case 4:{
+                            PickAnswer(Cat4Q4, Cat4Ch4, Cat4Ans4, Cat4P4, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore, nDoubleMode);
+                        } break;
+
+                        case 5:{
+                            PickAnswer(Cat4Q5, Cat4Ch5, Cat4Ans5, Cat4P5, 
+                                       nTurnTracker, nPlayers, nFailCounter,
+                                       strFirst, strSecond, strThird, nFirstScore, nSecondScore, nThirdScore,
+                                       strActivePlayer, nActiveScore, nDoubleMode);
+                        } break;               
+                    }
+
                     nChoiceLoop1 = 0;
                 } else {
                     printf("The category has been completed. Pick another.\n");
                 }
             } else if (cCategChoice == 'E') {
-                printf("You chose to exit the game\n");
+                // for exiting the game
+                ClearTerminal();
+                printf("You chose to exit the game.\n");
+
+                // sets nLength2 and such to 0 since if you don't it will just move to double round
+                *nJeopardyProgress = 0;
+                *nLength2 = 0;
                 nChoiceLoop1 = 0;
             } else {
                 printf("Invalid choice. Please pick from: [A, B, C, D, E]\n");
             }
         }
-
-    printf("Out of the loop");
-
         }
 
 
